@@ -1,0 +1,8 @@
+#imageArea {
+  margin-top: 10px;
+}
+#imageArea img{
+  width: 150px;
+  display: block;
+  margin-bottom: 10px;
+}
