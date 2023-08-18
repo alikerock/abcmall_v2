@@ -9,24 +9,30 @@
   $isrecom=$_REQUEST["isrecom"];
   $stat=$_REQUEST["stat"];
 
-  var_dump($pid);
-  echo '<hr>';
-  var_dump($ismain);
-  echo '<hr>';
-  var_dump($isnew);
-  echo '<hr>';
-  var_dump($isbest);
-  echo '<hr>';
-  var_dump($isrecom);
-  echo '<hr>';
-  var_dump($stat);
-
   foreach($pid as $p){
     $ismain[$p] = $ismain[$p] ?? 0;
     $isnew[$p] = $isnew[$p] ?? 0;
     $isbest[$p] = $isbest[$p] ?? 0;
     $isrecom[$p] = $isrecom[$p] ?? 0;
-    $stat[$p] = $stat[$p]  ?? 0;
-  }
+    $stat[$p] = $stat[$p] ?? 0;
+
+    $query = "update products set ismain=".$ismain[$p].", isnew=".$isnew[$p].", isbest=".$isbest[$p].", isrecom=".$isrecom[$p].", status=".$stat[$p]." where pid=".$p;
+    $rs=$mysqli->query($query) or die($mysqli->error);    
+}
+ if($rs){
+  echo "<script>
+    alert('일괄 수정 되었습니다.');
+    history.back();
+  </script>";
+ } else{
+  echo "<script>
+    alert('일괄 수정 실패!');
+    history.back();
+  </script>";
+ }
+
+  
+
+
 
   ?>
