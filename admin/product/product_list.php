@@ -140,7 +140,8 @@
     
   </form>
 
-  <form action="">
+  <form action="plist_update.php">
+    
     <table class="table product_list">
       <thead>
         <tr>
@@ -162,7 +163,9 @@
               foreach($rsc as $item){            
             ?>
         <tr>
+          
           <td>
+            <input type="hidden" name="pid[]" value="<?php echo $item->pid ?>"> 
             <img src="<?php echo $item->thumbnail ?>" alt="">
           </td>
           <td><?php echo $item->name ?></td>
