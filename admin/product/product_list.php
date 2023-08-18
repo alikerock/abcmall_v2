@@ -22,20 +22,22 @@
   $pageNumber = $_GET['pageNumber'] ?? 1;
   $pageCount = $_GET['pageCount'] ?? 10;
   $statLimit = ($pageNumber-1)*$pageCount; // (1-1)*10 = 0, (2-1)*10 = 10
-  $firstPageNumber = $_GET['firstPageNumber'] ;
+  $endLimit = $statLimit + $pageCount;
+  $firstPageNumber = $_GET['firstPageNumber'] ?? 0 ;
 
   $sql = "SELECT * from products where 1=1" ; // and 컬러명=값 and 컬러명=값 and 컬러명=값 
   //$sql = $sql.$search_where;
+  $search_where = '';
   $sql .= $search_where;
   $order = " order by pid desc";//최근순 정렬
-  $limit = "limit $statLimit, $statLimit+$pageCount";
-  $query = $sql.$order.$limt; //쿼리 문장 조합
+  $limit = " limit $statLimit, $endLimit";
+  $query = $sql.$order.$limit; //쿼리 문장 조합
   $result = $mysqli -> query($query);
   
   while($rs = $result -> fetch_object()){
     $rsc[] = $rs;
   }
-  print_r($rsc);
+  var_dump($rsc);
 
 ?>
 
