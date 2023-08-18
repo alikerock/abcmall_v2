@@ -3,11 +3,11 @@
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/admin_check.php';
 
   $pid = $_REQUEST['pid'];
-  $ismain=$_REQUEST["ismain"];
-  $isnew=$_REQUEST["isnew"];
-  $isbest=$_REQUEST["isbest"];
-  $isrecom=$_REQUEST["isrecom"];
-  $stat=$_REQUEST["stat"];
+  $ismain=$_REQUEST["ismain"] ?? [];
+  $isnew=$_REQUEST["isnew"] ?? [];
+  $isbest=$_REQUEST["isbest"] ?? [];
+  $isrecom=$_REQUEST["isrecom"] ?? [];
+  $stat=$_REQUEST["stat"] ?? [];
 
   foreach($pid as $p){
     $ismain[$p] = $ismain[$p] ?? 0;
@@ -22,12 +22,12 @@
  if($rs){
   echo "<script>
     alert('일괄 수정 되었습니다.');
-    history.back();
+    //history.back();
   </script>";
  } else{
   echo "<script>
     alert('일괄 수정 실패!');
-    history.back();
+    //history.back();
   </script>";
  }
 
