@@ -1,13 +1,8 @@
 <?php
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/header.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/category_func.php';
 
-  $query = "select * from category where step=1";
-  //$mysqli->함수명,   쿼리실행 $mysqli -> query(sql지시문);
-  $result = $mysqli -> query($query); //쿼리실행결과를 $result 할당
 
-  while($rs = $result -> fetch_object()){
-      $cate1[] = $rs;
-  }
 ?>
 <div class="container mt-5">
   <form action="">
