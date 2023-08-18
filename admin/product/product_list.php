@@ -25,13 +25,35 @@
   $endLimit = $statLimit + $pageCount;
   $firstPageNumber = $_GET['firstPageNumber'] ?? 0 ;
 
+  $cates1 = $_GET['cate1'] ?? '';
+  $cate2 = $_GET['cate2'] ?? '';
+  $cate3 = $_GET['cate3'] ?? '';
+  $ismain = $_GET['ismain'] ?? '';
+  $isnew = $_GET['isnew'] ?? '';
+  $isbest = $_GET['isbest'] ?? '';
+  $isrecom = $_GET['isrecom'] ?? '';
+  $sale_end_date = $_GET['sale_end_date'] ?? '';
+  $search_keyword = $_GET['search_keyword'] ?? '';
+
+  $search_where = '';
+
+  $cates = $cates1.$cate2.$cate3;
+ 
+  if($cates){
+    $search_where = " and cate like '{$cates}%'";
+  }
+
   $sql = "SELECT * from products where 1=1" ; // and 컬러명=값 and 컬러명=값 and 컬러명=값 
   //$sql = $sql.$search_where;
-  $search_where = '';
+  
   $sql .= $search_where;
   $order = " order by pid desc";//최근순 정렬
   $limit = " limit $statLimit, $endLimit";
+
   $query = $sql.$order.$limit; //쿼리 문장 조합
+
+
+  
   $result = $mysqli -> query($query);
   
   while($rs = $result -> fetch_object()){
@@ -115,6 +137,7 @@
   </thead>
   <tbody>
       <?php
+        if(isset($rsc)){
           foreach($rsc as $item){            
         ?>
     <tr>
@@ -145,8 +168,16 @@
     </tr>
    <?php
       }
+    } else {
    ?>
    
+    <tr>
+      <td colspan="10"> 검색 결과 없습니다 </td>
+    </tr>
+    <?php
+      }   
+   ?>
+
   </tbody>
 </table>
 <hr>
