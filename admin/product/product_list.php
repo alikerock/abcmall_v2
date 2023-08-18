@@ -54,6 +54,15 @@
   if($isrecom){
     $search_where .= " and isrecom = 1";
   }
+  if($sale_end_date){
+    $search_where .= " and sale_end_date >= '$sale_end_date'";
+    //판매 종료일이 지나지 않은 상품 조회
+  }
+  if($search_keyword){
+    $search_where .= " and (name like '%{$search_keyword}%' or content like '%{$search_keyword}%')";
+    //제목과 내용에 키워드가 포함된 상품 조회
+  }
+
 
   $sql = "SELECT * from products where 1=1" ; // and 컬러명=값 and 컬러명=값 and 컬러명=값 
   //$sql = $sql.$search_where;
@@ -64,7 +73,7 @@
 
   $query = $sql.$order.$limit; //쿼리 문장 조합
 
-  var_dump($query);
+  // var_dump($query);
   
   $result = $mysqli -> query($query);
   
@@ -173,10 +182,17 @@
       <td>
         <input class="form-check-input" type="checkbox" value="<?php echo $item->isrecom ?>" <?php if($item->isrecom){ echo "checked"; } ?> name="isrecom[<?php echo $item->pid ?>]" id="isrecom[<?php echo $item->pid ?>]">
     </td>
-      <td>
-        <input class="form-check-input" type="checkbox" value="<?php echo $item->status ?>" <?php if($item->status){ echo "checked"; } ?> name="status[<?php echo $item->pid ?>]" id="status[<?php echo $item->pid ?>]">
+      <td>        
+        <select name="stat[<?php echo $item->pid ?>]" id="stat[<?php echo $item->pid ?>]" class="form-select" aria-label="대기설정 변경">
+          <option value="-1"  <?php if($item->status==-1) {echo "selected"; } ?> >판매중지</option>
+          <option value="0" <?php if($item->status==0) {echo "selected"; } ?> >대기</option>
+          <option value="1"  <?php if($item->status==1) {echo "selected"; } ?> >판매중</option>
+        </select>
+
       </td>
-      <td></td>
+      <td>
+       <a href="" class="btn btn-primary">보기</a>
+      </td>
     </tr>
    <?php
       }
