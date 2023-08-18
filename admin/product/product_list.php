@@ -47,7 +47,7 @@
   <form action="" class="mt-5" id="search_form">
     <div class="row">
       <div class="col-md-4">
-        <select class="form-select" aria-label="Default select example" id="cate1">
+        <select class="form-select" aria-label="Default select example" id="cate1" name="cate1">
           <option selected disabled>대분류</option>
           <?php
           foreach($cate1 as $c){            
@@ -57,13 +57,13 @@
         </select>
       </div>
       <div class="col-md-4">
-        <select class="form-select" aria-label="Default select example" id="cate2">
+        <select class="form-select" aria-label="Default select example" id="cate2" name="cate2">
           <option selected disabled>중분류</option>
          
         </select>
       </div>
       <div class="col-md-4">
-        <select class="form-select" aria-label="Default select example" id="cate3">
+        <select class="form-select" aria-label="Default select example" id="cate3" name="cate3">
           <option selected disabled>소분류</option>
           
         </select>
