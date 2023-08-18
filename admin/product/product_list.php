@@ -19,6 +19,23 @@
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/header.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/category_func.php';
 
+  $pageNumber = $_GET['pageNumber'] ?? 1;
+  $pageCount = $_GET['pageCount'] ?? 10;
+  $statLimit = ($pageNumber-1)*$pageCount; // (1-1)*10 = 0, (2-1)*10 = 10
+  $firstPageNumber = $_GET['firstPageNumber'] ;
+
+  $sql = "SELECT * from products where 1=1" ; // and 컬러명=값 and 컬러명=값 and 컬러명=값 
+  //$sql = $sql.$search_where;
+  $sql .= $search_where;
+  $order = " order by pid desc";//최근순 정렬
+  $limit = "limit $statLimit, $statLimit+$pageCount";
+  $query = $sql.$order.$limt; //쿼리 문장 조합
+  $result = $mysqli -> query($query);
+  
+  while($rs = $result -> fetch_object()){
+    $rsc[] = $rs;
+  }
+  print_r($rsc);
 
 ?>
 
@@ -71,12 +88,11 @@
       <span class="d-flex g-5 align-items-center">
         <label for="end_date">판매종료일</label>
         <input type="text" class="form-control" name="sale_end_date" id="end_date">
-      </span>
-      <span>
-        <input type="text" class="form-control" name="search_keyword" id="search_keyword" placeholder="제목 및 내용에서 검색합니다">
-      </span>
+      </span>    
+      <input type="text" class="form-control" name="search_keyword" id="search_keyword" placeholder="제목 및 내용에서 검색합니다">
+      <button class="btn btn-primary">검색</button>
     </div>
-    <button class="btn btn-primary">검색</button>
+    
   </form>
 
 
