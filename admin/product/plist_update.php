@@ -22,12 +22,12 @@
  if($rs){
   echo "<script>
     alert('일괄 수정 되었습니다.');
-    //history.back();
+    history.back();
   </script>";
  } else{
   echo "<script>
     alert('일괄 수정 실패!');
-    //history.back();
+    history.back();
   </script>";
  }
 
