@@ -40,7 +40,19 @@
   $cates = $cates1.$cate2.$cate3;
  
   if($cates){
-    $search_where = " and cate like '{$cates}%'";
+    $search_where .= " and cate like '{$cates}%'";
+  }
+  if($ismain){
+    $search_where .= " and ismain = 1";
+  }
+  if($isnew){
+    $search_where .= " and isnew = 1";
+  }
+  if($isbest){
+    $search_where .= " and isbest = 1";
+  }
+  if($isrecom){
+    $search_where .= " and isrecom = 1";
   }
 
   $sql = "SELECT * from products where 1=1" ; // and 컬러명=값 and 컬러명=값 and 컬러명=값 
@@ -52,7 +64,7 @@
 
   $query = $sql.$order.$limit; //쿼리 문장 조합
 
-
+  var_dump($query);
   
   $result = $mysqli -> query($query);
   
