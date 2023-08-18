@@ -37,7 +37,7 @@
   while($rs = $result -> fetch_object()){
     $rsc[] = $rs;
   }
-  var_dump($rsc);
+
 
 ?>
 
@@ -98,7 +98,7 @@
   </form>
 
 
-  <table class="table">
+  <table class="table product_list">
   <thead>
     <tr>
       <th scope="col">사진</th>
@@ -118,16 +118,18 @@
           foreach($rsc as $item){            
         ?>
     <tr>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-      <td>4</td>
-      <td>5</td>
-      <td>6</td>
-      <td>7</td>
-      <td>8</td>
-      <td>9</td>
-      <td>10</td>
+      <td>
+        <img src="<?php echo $item->thumbnail ?>" alt="">
+      </td>
+      <td><?php echo $item->name ?></td>
+      <td><?php echo $item->price ?></td>
+      <td><?php echo $item->cnt ?></td>
+      <td><?php echo $item->ismain ?></td>
+      <td><?php echo $item->isnew ?></td>
+      <td><?php echo $item->isbest ?></td>
+      <td><?php echo $item->isrecom ?></td>
+      <td><?php echo $item->status ?></td>
+      <td></td>
     </tr>
    <?php
       }
