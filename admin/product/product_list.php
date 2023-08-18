@@ -25,7 +25,7 @@
 <div class="container">
   <h1 class="h3 mt-5">제품 목록</h1>
  
-  <form action="" class="mt-5">
+  <form action="" class="mt-5" id="search_form">
     <div class="row">
       <div class="col-md-4">
         <select class="form-select" aria-label="Default select example" id="cate1">
@@ -50,30 +50,34 @@
         </select>
       </div>
     </div>
-  </form>
-  <div class="input-group d-flex g-5 align-items-center mt-5">
-    <span>
-      <input class="form-check-input" type="checkbox" value="1" name="ismain" id="ismain">
-      <label class="form-check-label" for="ismain">메인</label>
-    </span>    
-    <span>
-      <input class="form-check-input" type="checkbox" value="1" name="isnew" id="isnew">
-      <label class="form-check-label" for="isnew">신제품</label>
-    </span>   
-    <span>
-      <input class="form-check-input" type="checkbox" value="1" name="isbest" id="isbest">
-      <label class="form-check-label" for="isbest">베스트</label>
-    </span>   
-    <span>
-      <input class="form-check-input" type="checkbox" value="1" name="isrecom" id="isrecom">
-      <label class="form-check-label" for="isrecom">추천</label>
-    </span>   
-    <span class="d-flex g-5 align-items-center">
-      <label for="end_date">판매종료일</label>
-      <input type="text" class="form-control" name="sale_end_date" id="end_date">
-    </span>
-  </div>
 
+    <div class="input-group d-flex g-5 align-items-center mt-3">
+      <span>
+        <input class="form-check-input" type="checkbox" value="1" name="ismain" id="ismain">
+        <label class="form-check-label" for="ismain">메인</label>
+      </span>    
+      <span>
+        <input class="form-check-input" type="checkbox" value="1" name="isnew" id="isnew">
+        <label class="form-check-label" for="isnew">신제품</label>
+      </span>   
+      <span>
+        <input class="form-check-input" type="checkbox" value="1" name="isbest" id="isbest">
+        <label class="form-check-label" for="isbest">베스트</label>
+      </span>   
+      <span>
+        <input class="form-check-input" type="checkbox" value="1" name="isrecom" id="isrecom">
+        <label class="form-check-label" for="isrecom">추천</label>
+      </span>   
+      <span class="d-flex g-5 align-items-center">
+        <label for="end_date">판매종료일</label>
+        <input type="text" class="form-control" name="sale_end_date" id="end_date">
+      </span>
+      <span>
+        <input type="text" class="form-control" name="search_keyword" id="search_keyword" placeholder="제목 및 내용에서 검색합니다">
+      </span>
+    </div>
+    <button class="btn btn-primary">검색</button>
+  </form>
 
 
   <table class="table">
@@ -116,6 +120,12 @@
 
 <script src="../../js/makeoption.js"></script>
 
+<script>
+    $( "#end_date" ).datepicker({
+    dateFormat:'yy-mm-dd'
+  });
+
+</script>
 <?php
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/footer.php';
 ?>
