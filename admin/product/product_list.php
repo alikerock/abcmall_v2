@@ -114,7 +114,9 @@
     </tr>
   </thead>
   <tbody>
-
+      <?php
+          foreach($rsc as $item){            
+        ?>
     <tr>
       <td>1</td>
       <td>2</td>
@@ -127,7 +129,9 @@
       <td>9</td>
       <td>10</td>
     </tr>
-   
+   <?php
+      }
+   ?>
    
   </tbody>
 </table>
