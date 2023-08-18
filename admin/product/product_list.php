@@ -1,21 +1,6 @@
 <?php
-  session_start(); 
-  // var_dump($_SESSION['AUID']);
 
-  if(isset($_SESSION['AUID'])){
-    if(!$_SESSION['AUID'] == 'admin'){
-      echo "<script>
-        alert('권한이 없습니다.');
-        location.href = '/abcmall/admin/login.php';
-      </script>";
-    }
-  } else{
-    echo "<script>
-        alert('권한이 없습니다.');
-        location.href = '/abcmall/admin/login.php';
-      </script>";
-  }
-
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/admin_check.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/header.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/category_func.php';
 
@@ -140,7 +125,7 @@
     
   </form>
 
-  <form action="plist_update.php">
+  <form action="plist_update.php" method="GET">
     
     <table class="table product_list">
       <thead>
