@@ -3,14 +3,14 @@
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/admin_check.php';
 
   $pid = $_REQUEST['pid'];
-  $ismain=$_REQUEST["ismain"] ?? [];
+  $ismain=$_REQUEST["ismain"] ?? []; //값이 없으면 빈배열로
   $isnew=$_REQUEST["isnew"] ?? [];
   $isbest=$_REQUEST["isbest"] ?? [];
   $isrecom=$_REQUEST["isrecom"] ?? [];
   $stat=$_REQUEST["stat"] ?? [];
 
   foreach($pid as $p){
-    $ismain[$p] = $ismain[$p] ?? 0;
+    $ismain[$p] = $ismain[$p] ?? 0; //배열에 값이 없으면 0
     $isnew[$p] = $isnew[$p] ?? 0;
     $isbest[$p] = $isbest[$p] ?? 0;
     $isrecom[$p] = $isrecom[$p] ?? 0;
