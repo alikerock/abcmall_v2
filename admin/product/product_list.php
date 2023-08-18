@@ -124,11 +124,23 @@
       <td><?php echo $item->name ?></td>
       <td><?php echo $item->price ?></td>
       <td><?php echo $item->cnt ?></td>
-      <td><?php echo $item->ismain ?></td>
-      <td><?php echo $item->isnew ?></td>
-      <td><?php echo $item->isbest ?></td>
-      <td><?php echo $item->isrecom ?></td>
-      <td><?php echo $item->status ?></td>
+      <td>
+        
+        <input class="form-check-input" type="checkbox" value="<?php echo $item->ismain ?>" <?php if($item->ismain){ echo "checked"; } ?> name="ismain[<?php echo $item->pid ?>]" id="ismain[<?php echo $item->pid ?>]">
+        
+      </td>
+      <td>
+        <input class="form-check-input" type="checkbox" value="<?php echo $item->isnew ?>" <?php if($item->isnew){ echo "checked"; } ?> name="isnew[<?php echo $item->pid ?>]" id="isnew[<?php echo $item->pid ?>]">
+      </td>
+      <td>
+        <input class="form-check-input" type="checkbox" value="<?php echo $item->isbest ?>" <?php if($item->isbest){ echo "checked"; } ?> name="isbest[<?php echo $item->pid ?>]" id="isbest[<?php echo $item->pid ?>]">
+    </td>
+      <td>
+        <input class="form-check-input" type="checkbox" value="<?php echo $item->isrecom ?>" <?php if($item->isrecom){ echo "checked"; } ?> name="isrecom[<?php echo $item->pid ?>]" id="isrecom[<?php echo $item->pid ?>]">
+    </td>
+      <td>
+        <input class="form-check-input" type="checkbox" value="<?php echo $item->status ?>" <?php if($item->status){ echo "checked"; } ?> name="status[<?php echo $item->pid ?>]" id="status[<?php echo $item->pid ?>]">
+      </td>
       <td></td>
     </tr>
    <?php
