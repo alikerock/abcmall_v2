@@ -51,7 +51,7 @@
       </div>
     </div>
   </form>
-  <div class="input-group d-flex g-5">
+  <div class="input-group d-flex g-5 align-items-center mt-5">
     <span>
       <input class="form-check-input" type="checkbox" value="1" name="ismain" id="ismain">
       <label class="form-check-label" for="ismain">메인</label>
@@ -68,7 +68,7 @@
       <input class="form-check-input" type="checkbox" value="1" name="isrecom" id="isrecom">
       <label class="form-check-label" for="isrecom">추천</label>
     </span>   
-    <span>
+    <span class="d-flex g-5 align-items-center">
       <label for="end_date">판매종료일</label>
       <input type="text" class="form-control" name="sale_end_date" id="end_date">
     </span>
