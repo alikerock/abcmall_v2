@@ -140,76 +140,82 @@
     
   </form>
 
+  <form action="">
+    <table class="table product_list">
+      <thead>
+        <tr>
+          <th scope="col">사진</th>
+          <th scope="col">제품명</th>
+          <th scope="col">가격</th>
+          <th scope="col">재고</th>
+          <th scope="col">메인</th>
+          <th scope="col">신제품</th>
+          <th scope="col">베스트</th>
+          <th scope="col">추천</th>
+          <th scope="col">상태</th>
+          <th scope="col">보기</th>
+        </tr>
+      </thead>
+      <tbody>
+          <?php
+            if(isset($rsc)){
+              foreach($rsc as $item){            
+            ?>
+        <tr>
+          <td>
+            <img src="<?php echo $item->thumbnail ?>" alt="">
+          </td>
+          <td><?php echo $item->name ?></td>
+          <td><?php echo $item->price ?></td>
+          <td><?php echo $item->cnt ?></td>
+          <td>
+            
+            <input class="form-check-input" type="checkbox" value="<?php echo $item->ismain ?>" <?php if($item->ismain){ echo "checked"; } ?> name="ismain[<?php echo $item->pid ?>]" id="ismain[<?php echo $item->pid ?>]">
+            
+          </td>
+          <td>
+            <input class="form-check-input" type="checkbox" value="<?php echo $item->isnew ?>" <?php if($item->isnew){ echo "checked"; } ?> name="isnew[<?php echo $item->pid ?>]" id="isnew[<?php echo $item->pid ?>]">
+          </td>
+          <td>
+            <input class="form-check-input" type="checkbox" value="<?php echo $item->isbest ?>" <?php if($item->isbest){ echo "checked"; } ?> name="isbest[<?php echo $item->pid ?>]" id="isbest[<?php echo $item->pid ?>]">
+        </td>
+          <td>
+            <input class="form-check-input" type="checkbox" value="<?php echo $item->isrecom ?>" <?php if($item->isrecom){ echo "checked"; } ?> name="isrecom[<?php echo $item->pid ?>]" id="isrecom[<?php echo $item->pid ?>]">
+        </td>
+          <td>        
+            <select name="stat[<?php echo $item->pid ?>]" id="stat[<?php echo $item->pid ?>]" class="form-select" aria-label="대기설정 변경">
+              <option value="-1"  <?php if($item->status==-1) {echo "selected"; } ?> >판매중지</option>
+              <option value="0" <?php if($item->status==0) {echo "selected"; } ?> >대기</option>
+              <option value="1"  <?php if($item->status==1) {echo "selected"; } ?> >판매중</option>
+            </select>
 
-  <table class="table product_list">
-  <thead>
-    <tr>
-      <th scope="col">사진</th>
-      <th scope="col">제품명</th>
-      <th scope="col">가격</th>
-      <th scope="col">재고</th>
-      <th scope="col">메인</th>
-      <th scope="col">신제품</th>
-      <th scope="col">베스트</th>
-      <th scope="col">추천</th>
-      <th scope="col">상태</th>
-      <th scope="col">보기</th>
-    </tr>
-  </thead>
-  <tbody>
+          </td>
+          <td>
+          <a href="" class="btn btn-primary">보기</a>
+          </td>
+        </tr>
       <?php
-        if(isset($rsc)){
-          foreach($rsc as $item){            
-        ?>
-    <tr>
-      <td>
-        <img src="<?php echo $item->thumbnail ?>" alt="">
-      </td>
-      <td><?php echo $item->name ?></td>
-      <td><?php echo $item->price ?></td>
-      <td><?php echo $item->cnt ?></td>
-      <td>
-        
-        <input class="form-check-input" type="checkbox" value="<?php echo $item->ismain ?>" <?php if($item->ismain){ echo "checked"; } ?> name="ismain[<?php echo $item->pid ?>]" id="ismain[<?php echo $item->pid ?>]">
-        
-      </td>
-      <td>
-        <input class="form-check-input" type="checkbox" value="<?php echo $item->isnew ?>" <?php if($item->isnew){ echo "checked"; } ?> name="isnew[<?php echo $item->pid ?>]" id="isnew[<?php echo $item->pid ?>]">
-      </td>
-      <td>
-        <input class="form-check-input" type="checkbox" value="<?php echo $item->isbest ?>" <?php if($item->isbest){ echo "checked"; } ?> name="isbest[<?php echo $item->pid ?>]" id="isbest[<?php echo $item->pid ?>]">
-    </td>
-      <td>
-        <input class="form-check-input" type="checkbox" value="<?php echo $item->isrecom ?>" <?php if($item->isrecom){ echo "checked"; } ?> name="isrecom[<?php echo $item->pid ?>]" id="isrecom[<?php echo $item->pid ?>]">
-    </td>
-      <td>        
-        <select name="stat[<?php echo $item->pid ?>]" id="stat[<?php echo $item->pid ?>]" class="form-select" aria-label="대기설정 변경">
-          <option value="-1"  <?php if($item->status==-1) {echo "selected"; } ?> >판매중지</option>
-          <option value="0" <?php if($item->status==0) {echo "selected"; } ?> >대기</option>
-          <option value="1"  <?php if($item->status==1) {echo "selected"; } ?> >판매중</option>
-        </select>
+          }
+        } else {
+      ?>
+      
+        <tr>
+          <td colspan="10"> 검색 결과 없습니다 </td>
+        </tr>
+        <?php
+          }   
+      ?>
 
-      </td>
-      <td>
-       <a href="" class="btn btn-primary">보기</a>
-      </td>
-    </tr>
-   <?php
-      }
-    } else {
-   ?>
-   
-    <tr>
-      <td colspan="10"> 검색 결과 없습니다 </td>
-    </tr>
-    <?php
-      }   
-   ?>
-
-  </tbody>
-</table>
+      </tbody>      
+    </table>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-primary">일괄 수정</button>
+    </div>
+  </form>
 <hr>
-<a href="product_up.php" class="btn btn-primary">제품 등록</a>
+
+<a href="product_up.php" class="btn btn-primary">제품 등록</a>  
+
 
 </div>
 
