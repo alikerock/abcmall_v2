@@ -51,7 +51,7 @@
       </div>
     </div>
 
-    <div class="input-group d-flex g-5 align-items-center mt-3">
+    <div class="input-group d-flex g-5 align-items-center mt-3 justify-content-between">
       <span>
         <input class="form-check-input" type="checkbox" value="1" name="ismain" id="ismain">
         <label class="form-check-label" for="ismain">메인</label>
