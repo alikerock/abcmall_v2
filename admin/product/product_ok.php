@@ -54,6 +54,8 @@
   $file_table_id = $_POST['file_table_id']??0;
   $file_table_id = $_POST['file_table_id'];
   $file_table_id = rtrim($file_table_id, ',');//최우측 콤마 제거
+  $optionCate1 = $_POST(['optionCate1'])?? '';
+
 
 
   if($_FILES['thumbnail']['name']){
@@ -111,6 +113,12 @@ if($result){ //상품이 등록되면
     $updatesql = "UPDATE product_image_table set pid={$pid} where imgid in ({$file_table_id})";
     $result = $mysqli -> query($updatesql);
   }
+  if($optionCate1){ //옵션값이 있으면 product_options에 값을 저장
+    $optionName1 = $_REQUEST['optionName1'];//옵션명
+    $optionCnt1 = $_REQUEST['optionCnt1'];//옵션재고
+    $optionPrice1 = $_REQUEST['optionPrice1'];//옵션가격
+  }
+
   echo "<script>
     alert('상품 등록 완료!');
     location.href='/abcmall/admin/product/product_list.php';  

@@ -12,3 +12,7 @@ label{
 .product_list img{
   width: 100px;
 }
+
+#optionBody [name^="optionCnt"] {
+  width: 60px;
+}

@@ -150,34 +150,39 @@
           <th scope="row">
             <label for="optionCate1">옵션 선택</label>
             <select name="optionCate1" id="optionCate1">
-              <option value="컬러" selected>컬러</option>
+              <option value="" selected disabled>선택</option>
+              <option value="사이즈">사이즈</option>
+              <option value="컬러" >컬러</option>
             </select>
           </th>
           <td>
             <table>
               <thead>
-                <th scope="col">옵션명</th>
-                <th scope="col">재고</th>
-                <th scope="col">가격</th>
-                <th scope="col">이미지</th>
-              </thead>
-              <tbody>
                 <tr class="row">
+                  <th scope="col" class="col">옵션명</th>
+                  <th scope="col" class="col">재고</th>
+                  <th scope="col" class="col">가격</th>
+                  <th scope="col" class="col">이미지</th>
+                </tr>
+              </thead>
+              <tbody id="optionBody">
+                <tr class="row" id="optionTr">
                   <td class="col">
                     <input type="text" class="form-control" name="optionName1[]">
                   </td>
-                  <td class="col">
-                    <input type="text" class="form-control" name="optionName1[]"><span>개</span>
+                  <td class="col d-flex">
+                    <input type="text" class="form-control" name="optionCnt1[]"><span>개</span>
+                  </td>
+                  <td class="col d-flex">
+                    <input type="text" class="form-control" name="optionPrice1[]"><span>원</span>
                   </td>
                   <td class="col">
-                    <input type="text" class="form-control" name="optionName1[]"><span>원</span>
-                  </td>
-                  <td class="col">
-                    <input type="file" class="form-control" name="optionName1[]">
+                    <input type="file" class="form-control" name="optionImage1[]">
                   </td>
                 </tr>
               </tbody>
             </table>
+            <button class="btn btn-primary" type="button" id="optionAddBtn">옵션추가</button>
           </td>
         </tr>
       </tbody>
@@ -308,6 +313,12 @@
 
     })
   } //file_delete func
+
+  $('#optionAddBtn').click(function(){
+    let optionHtml = $('#optionTr').html();
+    optionHtml = `<tr class="row">${optionHtml}</tr>`;
+    $('#optionBody').append(optionHtml);
+  });
 
 </script>
 <?php
