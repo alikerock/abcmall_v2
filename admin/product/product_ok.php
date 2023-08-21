@@ -54,7 +54,7 @@
   $file_table_id = $_POST['file_table_id']??0;
   $file_table_id = $_POST['file_table_id'];
   $file_table_id = rtrim($file_table_id, ',');//최우측 콤마 제거
-  $optionCate1 = $_POST(['optionCate1'])?? '';
+  $optionCate1 = $_POST['optionCate1']?? '';
 
 
 
@@ -117,16 +117,57 @@ if($result){ //상품이 등록되면
     $optionName1 = $_REQUEST['optionName1'];//옵션명
     $optionCnt1 = $_REQUEST['optionCnt1'];//옵션재고
     $optionPrice1 = $_REQUEST['optionPrice1'];//옵션가격
-  }
+
+    if($_FILES['optionImage1']['name']){ //옵션에 첨부이미지가 있다면
+
+      for($i = 0;$i<count($_FILES['optionImage1']['name']) ; $i++){
+        // 반복할일 
+        if($_FILES['optionImage1']['size'][$i] > 10240000){
+            echo "<script>
+              alert('<?php echo $i + 1 ?>번째 이미지가 기준을 초과합니다., 10메가 이하만 첨부할 수 있습니다. ');
+              history.back();  
+            </script>";
+            exit;
+          }
+          if(strpos($_FILES['optionImage1']['type'][$i], 'image') === false){
+            echo "<script>
+              alert('이미지만 첨부할 수 있습니다.');    
+              history.back();            
+            </script>";
+            exit;
+          }
+
+          //파일 업로드
+          $save_dir = $_SERVER['DOCUMENT_ROOT']."/abcmall/pdata/option";
+          $filename = $_FILES['optionImage1']['name'][$i]; //insta.jpg
+          $ext = pathinfo($filename, PATHINFO_EXTENSION); //jpg
+          $newfilename = date("YmdHis").substr(rand(), 0,6); //20238171184015
+          $optionImage1 = $newfilename.".".$ext; //20238171184015.jpg
+
+
+          if(move_uploaded_file($_FILES['optionImage1']['tmp_name'], $save_dir.$optionImage1)){  
+            $upload_option_image[] = "/abcmall/pdata/".$optionImage1;
+          } else{
+            echo "<script>
+              alert('이미지등록 실패!');    
+              history.back();            
+            </script>";
+          }          
+
+      }//반복문
+        
+    }//옵션에 첨부이미지가 있다면
+
+  }//옵션값이 있으면
 
   echo "<script>
-    alert('상품 등록 완료!');
-    location.href='/abcmall/admin/product/product_list.php';  
+    //alert('상품 등록 완료!');
+   // location.href='/abcmall/admin/product/product_list.php';  
   </script>";
 } else{
   echo "<script>
-    alert('상품 등록 실패');
-    history.back();
+   // alert('상품 등록 실패');
+   // history.back();
   </script>";
 }
 
