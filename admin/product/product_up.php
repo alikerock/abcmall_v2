@@ -146,7 +146,40 @@
             </div>
           </td>
         </tr>      
-
+        <tr>
+          <th scope="row">
+            <label for="optionCate1">옵션 선택</label>
+            <select name="optionCate1" id="optionCate1">
+              <option value="컬러" selected>컬러</option>
+            </select>
+          </th>
+          <td>
+            <table>
+              <thead>
+                <th scope="col">옵션명</th>
+                <th scope="col">재고</th>
+                <th scope="col">가격</th>
+                <th scope="col">이미지</th>
+              </thead>
+              <tbody>
+                <tr class="row">
+                  <td class="col">
+                    <input type="text" class="form-control" name="optionName1[]">
+                  </td>
+                  <td class="col">
+                    <input type="text" class="form-control" name="optionName1[]"><span>개</span>
+                  </td>
+                  <td class="col">
+                    <input type="text" class="form-control" name="optionName1[]"><span>원</span>
+                  </td>
+                  <td class="col">
+                    <input type="file" class="form-control" name="optionName1[]">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
       </tbody>
     </table>
     <button class="btn btn-primary">등록</button>
