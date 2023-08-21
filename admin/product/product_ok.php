@@ -145,7 +145,7 @@ if($result){ //상품이 등록되면
             $newfilename = date("YmdHis").substr(rand(), 0,6); //20238171184015
             $optionImage1 = $newfilename.".".$ext; //20238171184015.jpg  
   
-            if(move_uploaded_file($_FILES['optionImage1']['tmp_name'], $save_dir.$optionImage1)){  
+            if(move_uploaded_file($_FILES['optionImage1']['tmp_name'][$i], $save_dir.$optionImage1)){  
               $upload_option_image[] = "/abcmall/pdata/option/".$optionImage1;
             } else{
               echo "<script>
