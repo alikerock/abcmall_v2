@@ -118,6 +118,7 @@ if($result){ //상품이 등록되면
     $optionCnt1 = $_REQUEST['optionCnt1'];//옵션재고
     $optionPrice1 = $_REQUEST['optionPrice1'];//옵션가격
 
+
       for($i = 0;$i<count($optionName1) ; $i++){ //옵션들 마다 할일
 
         if(isset($_FILES['optionImage1'])){ //해당옵션에 이미지가 있다면
@@ -154,18 +155,29 @@ if($result){ //상품이 등록되면
             }          
         }//해당옵션에 이미지가 있다면
 
+        $optsql = "INSERT INTO product_options 
+        (pid, cate,option_name, option_cnt, option_price, image_url) 
+        VALUES 
+        ({$pid}, '{$optionCate1}', '{$optionName1[$i]}', '{$optionCnt1[$i]}', '{$optionPrice1[$i]}', '{$upload_option_image[$i]}')
+        ";
+        $oprs = $mysqli -> query($optsql);       
+
+        // if($oprs == true){
+
+        // }
+
       }//반복문
     
   }//옵션값이 있으면
 
   echo "<script>
-    //alert('상품 등록 완료!');
-   // location.href='/abcmall/admin/product/product_list.php';  
+   alert('상품 등록 완료!');
+   location.href='/abcmall/admin/product/product_list.php';  
   </script>";
 } else{
   echo "<script>
-   // alert('상품 등록 실패');
-   // history.back();
+   alert('상품 등록 실패');
+   history.back();
   </script>";
 }
 
