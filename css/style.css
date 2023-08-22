@@ -16,3 +16,9 @@ label{
 #optionBody [name^="optionCnt"] {
   width: 60px;
 }
+.product_options{
+  margin-bottom: 10px;
+}
+.product_options img{
+  width: 80px;
+}

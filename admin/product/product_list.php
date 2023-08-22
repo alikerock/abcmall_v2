@@ -179,7 +179,7 @@
 
           </td>
           <td>
-          <a href="" class="btn btn-primary">보기</a>
+          <a href="product_view.php?pid=<?php echo $item->pid ?>" class="btn btn-primary">보기</a>
           </td>
         </tr>
       <?php
