@@ -19,6 +19,14 @@
     $options[]=$rs2;
   }
 
+  $sql3 = "SELECT * FROM product_image_table where pid={$pid}";
+  $result3 = $mysqli -> query($sql3);
+  //$rs2 = $result2 -> fetch_object();
+
+  while($rs3 = $result3 -> fetch_object()){
+    $addImgs[]=$rs3;
+  }
+
 
 ?>
 
@@ -60,7 +68,21 @@
       <tr><th>썸네일</th><td>
         <img src="<?= $rs->thumbnail; ?>" alt="">
       </td></tr>
-      <tr><th>추가이미지</th><td></td></tr>
+      <tr><th>추가이미지</th><td>
+
+        <?php
+            if(isset($addImgs)){
+              foreach($addImgs as $ai){
+          ?>             
+            <div class="product_options">
+              <img src="/abcmall/pdata/<?= $ai-> filename;?>" alt="">
+            </div>
+          <?php      
+            }
+          }
+          ?>      
+
+      </td></tr>
     </tbody>
   </table>
   <hr>
