@@ -3,13 +3,10 @@
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/header.php';
   
   $pid = $_GET['pid'];
+  
   $sql = "SELECT * FROM products where pid={$pid}";
   $result = $mysqli -> query($sql);
   $rs = $result -> fetch_object();
-  var_dump($rs);
-
-  //product_options테이블에서 pid가  $pid와 일치하는 데이터를 조회, 출력
-
 
   $sql2 = "SELECT * FROM product_options where pid={$pid}";
   $result2 = $mysqli -> query($sql2);
