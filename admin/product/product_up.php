@@ -44,7 +44,7 @@
           <td>
             <div class="row">
               <div class="col-md-4">
-                <select class="form-select" aria-label="Default select example" id="cate1" name="cate1">
+                <select class="form-select" aria-label="Default select example" id="cate1" name="cate1" required>
                   <option selected disabled>대분류</option>
                   <?php
                   foreach($cate1 as $c){            
@@ -74,7 +74,7 @@
             <label for="name">제품명</label>
           </th>
           <td>
-            <input type="text" name="name" id="name" class="form-control">
+            <input type="text" name="name" id="name" class="form-control" required>
           </td>
         </tr>
         <tr>
@@ -82,7 +82,7 @@
             <label for="name">가격</label>
           </th>
           <td>
-            <input type="number" name="price" id="price" min="10000" max="1000000" step="10000" class="form-control">
+            <input type="number" name="price" id="price" min="10000" max="1000000" step="10000" class="form-control"  required>
           </td>
         </tr>
         <tr>
@@ -122,7 +122,7 @@
           <th scope="row">판매종료일</th>
           <td>
             <input type="text" name="sale_end_date" id="sale_end_date" class="form-control"
-              value="<?php echo date("Y-m-d",strtotime("+6 month")); ?>">
+              value="<?php echo date("Y-m-d",strtotime("+6 month")); ?>"  required>
           </td>
         </tr>
         <tr>
@@ -135,7 +135,7 @@
         <tr>
           <th scope="row">썸네일</th>
           <td>
-            <input type="file" name="thumbnail" id="thumbnail" class="form-control">
+            <input type="file" name="thumbnail" id="thumbnail" class="form-control" required>
           </td>
         </tr>
         <!--
@@ -245,6 +245,17 @@
     let markupStr = $('#product_detail').summernote('code');
     let content = encodeURIComponent(markupStr);
     $('#content').val(content);
+
+    if(!$('#cate1').val()){
+      alert('대분류를 선택해주세요');
+      return false;
+    }
+    if ($('#product_detail').summernote('isEmpty')) {
+      alert('상품 설명을 입력하세요');
+      return false;
+    }
+
+
   });
 
   /*
