@@ -296,12 +296,12 @@
           let imgid = $('#file_table_id').val() + return_data.imgid + ',';
           $('#file_table_id').val(imgid);
           let html = `
-              <div class="col" id="f_${return_data.imgid}" data-imgid="${return_data.imgid}">
+              <div class="thumb" id="f_${return_data.imgid}" data-imgid="${return_data.imgid}">
                 <img src="/abcmall/pdata/${return_data.savefile}" alt="">
                 <button type="button" class="btn btn-warning">삭제</button>
              </div>
           `;
-          $('#imageArea').append(html);
+          $('#thumbnails').append(html);
         }
       }
 
@@ -323,7 +323,7 @@
 
 
 
-  $('#imageArea').on('click', 'button', function () {
+  $('#thumbnails').on('click', 'button', function () {
     let imgid = $(this).parent().attr('data-imgid');
     file_delete(imgid);
   });
