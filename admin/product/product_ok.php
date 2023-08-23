@@ -24,6 +24,8 @@
 //   $cate1 = '';
 // }
 
+$mysqli->autocommit(FALSE);//커밋이 안되도록 지정, 일단 바로 저장하지 못하도록
+try{
 
   $cate1 =  $_POST['cate1']??'' ;
   $cate2 =  $_POST['cate2']??'' ;
@@ -170,18 +172,20 @@ if($result){ //상품이 등록되면
     
   }//옵션값이 있으면
 
+  $mysqli->commit();//디비에 커밋한다.
+
   echo "<script>
    alert('상품 등록 완료!');
    location.href='/abcmall/admin/product/product_list.php';  
   </script>";
-} else{
+  }
+} catch (Exception $e) {
+  $mysqli->rollback();//저장한 테이블이 있다면 롤백한다.
   echo "<script>
    alert('상품 등록 실패');
    history.back();
   </script>";
+  exit;
 }
 
-
-
-
-  ?>
+?>
