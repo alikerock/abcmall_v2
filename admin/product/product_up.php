@@ -133,19 +133,35 @@
             <input type="file" name="thumbnail" id="thumbnail" class="form-control">
           </td>
         </tr>      
+        <!--
         <tr>
           <th scope="row">추가이미지</th>
           <td>
             <input type="file" multiple id="upfile" class="visually-hidden">
             <button type="button" id="selectImg" class="btn btn-primary">이미지 선택</button>
-            <div class="row" id="imageArea">
-              <!-- <div class="col" data-imgid="01">
-                <img src="" alt="">
-                <button class="btn btn-warning">삭제</button>
-              </div> -->
+            <div class="row" id="imageArea">             
             </div>
           </td>
         </tr>      
+        -->
+        <tr>
+          <th scope="row">추가이미지</th>
+          <td>
+            <div id="drop" class="box">
+              <span>여기로 drag & drop</span>
+              <div id="thumbnails" class="d-flex justify-content-start">
+                <div class="thumb">
+                  <button type="button" data-idx="" class="close btn btn-warning">삭제</button>
+                  <img src="" alt="">
+                </div>
+                <div class="thumb">
+                  <button type="button" data-idx="" class="close btn btn-warning">삭제</button>
+                  <img src="" alt="">
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>   
         <tr>
           <th scope="row">
             <label for="optionCate1">옵션 선택</label>
