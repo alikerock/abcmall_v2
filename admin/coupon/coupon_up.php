@@ -46,15 +46,15 @@
         </tr>
         <tr>
           <th scope="row"><label for="regdate">등록일: </label></th>
-          <td><input type="text" name="regdate" id="regdate" class="form-control"></td>
+          <td><input type="text" name="regdate" id="regdate" class="form-control" required></td>
         </tr>
         <tr>
           <th scope="row"><label for="max_value">최대할인금액: </label></th>
-          <td><input type="number" name="max_value" min="10000" max="100000" step="10000" id="max_value" class="form-control"></td>
+          <td><input type="number" name="max_value" min="10000" max="100000" step="10000" id="max_value" class="form-control" required></td>
         </tr>
         <tr>
           <th scope="row"><label for="use_min_price">최소사용금액: </label></th>
-          <td><input type="number" name="use_min_price" min="10000" max="100000" step="10000" id="use_min_price" class="form-control"></td>
+          <td><input type="number" name="use_min_price" min="10000" max="100000" step="10000" id="use_min_price" class="form-control" required></td>
         </tr>
       </tbody>
     </table>
