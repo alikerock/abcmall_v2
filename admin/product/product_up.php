@@ -24,8 +24,12 @@
 
 ?>
 <!-- include summernote css/js -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css" integrity="sha512-ngQ4IGzHQ3s/Hh8kMyG4FC74wzitukRMIcTOoKT3EyzFZCILOPF0twiXOQn75eDINUfKBYmzYn2AA8DkAk8veQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js" integrity="sha512-6F1RVfnxCprKJmfulcxxym1Dar5FsT/V2jiEUvABiaEiFWoQ8yHvqRM/Slf0qJKiwin6IDQucjXuolCfCKnaJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css"
+  integrity="sha512-ngQ4IGzHQ3s/Hh8kMyG4FC74wzitukRMIcTOoKT3EyzFZCILOPF0twiXOQn75eDINUfKBYmzYn2AA8DkAk8veQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js"
+  integrity="sha512-6F1RVfnxCprKJmfulcxxym1Dar5FsT/V2jiEUvABiaEiFWoQ8yHvqRM/Slf0qJKiwin6IDQucjXuolCfCKnaJQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
 <div class="container">
@@ -117,7 +121,8 @@
         <tr>
           <th scope="row">판매종료일</th>
           <td>
-            <input type="text" name="sale_end_date" id="sale_end_date" class="form-control" value="<?php echo date("Y-m-d",strtotime("+6 month")); ?>">
+            <input type="text" name="sale_end_date" id="sale_end_date" class="form-control"
+              value="<?php echo date("Y-m-d",strtotime("+6 month")); ?>">
           </td>
         </tr>
         <tr>
@@ -132,7 +137,7 @@
           <td>
             <input type="file" name="thumbnail" id="thumbnail" class="form-control">
           </td>
-        </tr>      
+        </tr>
         <!--
         <tr>
           <th scope="row">추가이미지</th>
@@ -150,25 +155,27 @@
             <div id="drop" class="box">
               <span>여기로 drag & drop</span>
               <div id="thumbnails" class="d-flex justify-content-start">
+                <!--
                 <div class="thumb">
-                  <button type="button" data-idx="" class="close btn btn-warning">삭제</button>
                   <img src="" alt="">
+                  <button type="button" data-idx="" class="close btn btn-warning">삭제</button>
                 </div>
                 <div class="thumb">
-                  <button type="button" data-idx="" class="close btn btn-warning">삭제</button>
                   <img src="" alt="">
+                  <button type="button" data-idx="" class="close btn btn-warning">삭제</button>
                 </div>
+                -->
               </div>
             </div>
           </td>
-        </tr>   
+        </tr>
         <tr>
           <th scope="row">
             <label for="optionCate1">옵션 선택</label>
             <select name="optionCate1" id="optionCate1">
               <option value="" selected disabled>선택</option>
               <option value="사이즈">사이즈</option>
-              <option value="컬러" >컬러</option>
+              <option value="컬러">컬러</option>
             </select>
           </th>
           <td>
@@ -210,57 +217,81 @@
 <script src="../../js/makeoption.js"></script>
 
 <script>
-  $('#product_form').submit(function(){
+  var uploadFiles = [];
+  var $drop = $("#drop");
+  $drop.on("dragenter", function (e) { //드래그 요소가 들어왔을떄
+    $(this).addClass('drag-enter');
+  }).on("dragleave", function (e) { //드래그 요소가 나갔을때
+    $(this).removeClass('drag-enter');
+  }).on("dragover", function (e) {
+    e.stopPropagation();
+    e.preventDefault();
+  }).on('drop', function (e) { //드래그한 항목을 떨어뜨렸을때
+    e.preventDefault();
+    console.log(e);
+
+    $(this).removeClass('drag-enter');
+    var files = e.originalEvent.dataTransfer.files; //드래그&드랍 항목
+    console.log(files);
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      attachFile(file);
+    }    
+  });  
+
+
+  $('#product_form').submit(function () {
 
     let markupStr = $('#product_detail').summernote('code');
     let content = encodeURIComponent(markupStr);
     $('#content').val(content);
   });
 
-
-  $('#upfile').change(function(){
+  /*
+  $('#upfile').change(function () {
     let files = $(this).prop('files');
     console.log(files);
 
-    for(file of files){      
+    for (file of files) {
       attachFile(file);
     }
-    
-  });//upfile 클릭 할일
 
-  function attachFile(file){
+  }); //upfile 클릭 할일
+  */
+
+  function attachFile(file) {
     console.log(file);
     let formData = new FormData(); //페이지 전환없이 이페이지 바로 이미지 등록
     formData.append('savefile', file) //<input type="file" name="savefile" value="파일명">
     console.log(formData);
     $.ajax({
-      url:'product_save_image.php',
+      url: 'product_save_image.php',
       data: formData,
-      cache:false,
+      cache: false,
       contentType: false,
-      processData : false,
-      dataType :'json',
-      type:'POST',
-      error: function(error){
+      processData: false,
+      dataType: 'json',
+      type: 'POST',
+      error: function (error) {
         console.log('error:', error)
       },
-      success:function(return_data){
+      success: function (return_data) {
 
         console.log(return_data);
 
-        if(return_data.result == 'member'){
+        if (return_data.result == 'member') {
           alert('로그인을 하십시오.');
           return;
-        } else if(return_data.result == 'image'){
+        } else if (return_data.result == 'image') {
           alert('이미지파일만 첨부할 수 있습니다.');
           return;
-        } else if(return_data.result == 'size'){
+        } else if (return_data.result == 'size') {
           alert('10메가 이하만 첨부할 수 있습니다.');
           return;
-        } else if(return_data.result == 'error'){
+        } else if (return_data.result == 'error') {
           alert('관리자에게 문의하세요');
           return;
-        } else{
+        } else {
           //첨부이미지 테이블에 저장하면 할일
           let imgid = $('#file_table_id').val() + return_data.imgid + ',';
           $('#file_table_id').val(imgid);
@@ -278,7 +309,7 @@
   }
 
 
-  $('#selectImg').click(function(){
+  $('#selectImg').click(function () {
     $('#upfile').trigger('click');
   });
 
@@ -286,56 +317,56 @@
     height: 400
   });
 
-  $( "#sale_end_date" ).datepicker({
-    dateFormat:'yy-mm-dd'
+  $("#sale_end_date").datepicker({
+    dateFormat: 'yy-mm-dd'
   });
 
 
 
-  $('#imageArea').on('click','button', function(){
+  $('#imageArea').on('click', 'button', function () {
     let imgid = $(this).parent().attr('data-imgid');
     file_delete(imgid);
   });
-  function file_delete(imgid){
-    if(!confirm('정말삭제할까요?')){
+
+  function file_delete(imgid) {
+    if (!confirm('정말삭제할까요?')) {
       return false;
     }
     let data = {
-      imgid : imgid
+      imgid: imgid
     }
     $.ajax({
       async: false,
-      type:'post',
-      url:'image_delete.php',
+      type: 'post',
+      url: 'image_delete.php',
       data: data,
-      dataType:'json',      
-      error: function(error){
+      dataType: 'json',
+      error: function (error) {
         console.log('error:', error)
       },
-      success:function(return_data){
-        if(return_data.result == 'member'){
+      success: function (return_data) {
+        if (return_data.result == 'member') {
           alert('로그인 먼저하세요');
           return;
-        } else if(return_data.result == 'my'){
+        } else if (return_data.result == 'my') {
           alert('본인이 작성한 제품의 이미지만 삭제할 수 있습니다.');
           return;
-        } else if(return_data.result == 'no'){
+        } else if (return_data.result == 'no') {
           alert('삭제 실패');
           return;
-        } else{
-          $('#f_'+imgid).hide();
+        } else {
+          $('#f_' + imgid).hide();
         }
       }
 
     })
   } //file_delete func
 
-  $('#optionAddBtn').click(function(){
+  $('#optionAddBtn').click(function () {
     let optionHtml = $('#optionTr').html();
     optionHtml = `<tr class="row">${optionHtml}</tr>`;
     $('#optionBody').append(optionHtml);
   });
-
 </script>
 <?php
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/footer.php';
