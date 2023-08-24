@@ -54,7 +54,8 @@ label{
   padding: 20px;
   gap:10px;
 }
-#thumbnails .thumb{
+#thumbnails .thumb,
+.coupon_thumb img{
   width: 150px;
 }
 #thumbnails .thumb img{
