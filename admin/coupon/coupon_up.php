@@ -27,11 +27,16 @@
         </tr>
         <tr id="coupon_price_tr">
           <th scope="row"><label for="coupon_price">할인금액: </label></th>
-          <td><input type="text" name="coupon_price" id="coupon_price" class="form-control"></td>
+          <td class="d-flex align-items-center">
+            <input type="number" name="coupon_price" id="coupon_price" value="0"  min="10000" max="100000" step="10000" class="form-control"><span>원</span>
+          </td>
         </tr>
         <tr id="coupon_ratio_tr">
           <th scope="row"><label for="coupon_ratio">할인비율: </label></th>
-          <td><input type="text" name="coupon_ratio" id="coupon_ratio" class="form-control"></td>
+          <td class="d-flex align-items-center">
+            <input type="number" name="coupon_ratio" id="coupon_ratio" value="0"  min="5" max="15" step="5" class="form-control">
+            <span>%</span>
+          </td>
         </tr>
         <tr>
           <th scope="row"><label for="status">상태: </label></th>

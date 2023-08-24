@@ -54,7 +54,7 @@
     (coupon_name, coupon_image, coupon_type, coupon_price, coupon_ratio, status, regdate, max_value, use_min_price) 
     VALUES 
     ('{$coupon_name}', '{$coupon_image}', '{$coupon_type}', {$coupon_price}, {$coupon_ratio}, '{$status}', '{$regdate}', {$max_value}, {$use_min_price})";
-
+ 
   $result = $mysqli -> query($sql);
 
   $mysqli->commit();//디비에 커밋한다.
