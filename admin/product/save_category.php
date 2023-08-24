@@ -1,5 +1,5 @@
 <?php
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/dbcon.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/dbcon.php';
 
   $name = $_POST['name'];
   $code = $_POST['code'];

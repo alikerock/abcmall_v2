@@ -1,5 +1,5 @@
 <?php
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/header.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/header.php';
 ?>
 
 <div class="container">
@@ -22,5 +22,5 @@
 </div>
 
 <?php
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/footer.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/footer.php';
 ?>

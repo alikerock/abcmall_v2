@@ -1,26 +1,7 @@
 <?php
-  session_start(); 
-  // var_dump($_SESSION['AUID']);
-
-  // $test = strpos("images/jpeg", 'test');
-  // var_dump($test);
-
-  if(isset($_SESSION['AUID'])){
-    if(!$_SESSION['AUID'] == 'admin'){
-      echo "<script>
-        alert('권한이 없습니다.');
-        location.href = '/abcmall/admin/login.php';
-      </script>";
-    }
-  } else{
-    echo "<script>
-        alert('권한이 없습니다.');
-        location.href = '/abcmall/admin/login.php';
-      </script>";
-  }
-
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/header.php';
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/category_func.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/header.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/category_func.php';
 
 ?>
 <!-- include summernote css/js -->
@@ -380,5 +361,5 @@
   });
 </script>
 <?php
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/footer.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/footer.php';
 ?>

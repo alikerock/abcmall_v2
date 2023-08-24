@@ -1,6 +1,6 @@
 <?php
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/dbcon.php';
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/admin_check.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/dbcon.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php';
 
   $pid = $_REQUEST['pid'];
   $ismain=$_REQUEST["ismain"] ?? []; //값이 없으면 빈배열로

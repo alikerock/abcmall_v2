@@ -2,7 +2,7 @@
   session_start();
 
 
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/dbcon.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/dbcon.php';
 
 
   //관리자 검사

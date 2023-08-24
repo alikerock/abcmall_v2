@@ -1,6 +1,6 @@
 <?php
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/admin_check.php';
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/header.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/header.php';
 ?>
 
 <div class="container">
@@ -91,5 +91,5 @@
 
 </script>
 <?php
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/footer.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/footer.php';
 ?>
