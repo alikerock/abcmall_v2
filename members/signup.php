@@ -5,7 +5,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/header.php';
 <div class="container">
   <h2 class="text-center">회원가입</h2>
 
-  <form action="" class="signup">
+  <form action="signup_ok.php" class="signup" method="POST">
     <div class="d-flex g-5">
       <label for="username">이름</label>
       <input type="text" name="username" id="username" class="form-control" require>
