@@ -67,19 +67,22 @@
   </form>
 </div>
 <script>
-  $('#coupon_ratio_tr').hide();
+  // $('#coupon_ratio_tr').hide();
+  $('#coupon_ratio_tr input').prop( "disabled", true );
+
   $('.coupon_type input').change(function(){
     let typeval = $(this).val();
-    console.log(typeval);
     if(typeval == '정률'){
-      $('#coupon_price_tr').hide();
-      $('#coupon_ratio_tr').show();
+      $('#coupon_price_tr input').prop( "disabled", true );
+      $('#coupon_ratio_tr input').prop( "disabled", false ).focus();
     }
     if(typeval == '정액'){
-      $('#coupon_price_tr').show();
-      $('#coupon_ratio_tr').hide();
+      $('#coupon_price_tr input').prop( "disabled", false ).focus();
+      $('#coupon_ratio_tr input').prop( "disabled", true );
     }    
   });
+
+
 
   $("#regdate").datepicker({
     dateFormat: 'yy-mm-dd'
