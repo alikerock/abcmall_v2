@@ -30,7 +30,7 @@ if($result){
   $ucresult = $mysqli -> query($ucsql) or die($mysql->error);
 
   echo "<script>
-    alert('회원가입 완료');
+    alert('가입완료! $cname $cprice 권이 발행되었습니다.');
     location.href= '/abcmall/index.php';
   </script>";
 }else{
