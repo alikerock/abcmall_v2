@@ -1,0 +1,10 @@
+body{
+  background: #ebebeb;
+}
+
+.signup > div {
+  margin-bottom: 10px;
+}
+.signup label{
+  width: 100px;
+}

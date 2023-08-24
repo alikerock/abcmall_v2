@@ -1,6 +1,6 @@
 <?php
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/admin_check.php';
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/dbcon.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/dbcon.php';
 
   $coupon_name = $_POST['coupon_name'];
   $coupon_type = $_POST['coupon_type'];
