@@ -1,7 +1,7 @@
 <?php
 
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/header.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/category_func.php';
 
   $pageNumber = $_GET['pageNumber'] ?? 1;

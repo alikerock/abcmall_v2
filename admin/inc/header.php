@@ -1,4 +1,5 @@
 <?php
+  session_start(); 
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/dbcon.php';
 ?>
 <!DOCTYPE html>
@@ -18,3 +19,14 @@
 
 </head>
 <body>
+
+<?php
+  if(isset($_SESSION['AUID'])){
+    if($_SESSION['AUID'] == 'admin'){
+  ?>
+  <a href="/abcmall/admin/logout.php" class="btn btn-primary">로그아웃</a>
+  <?php
+    }
+  } 
+?>
+

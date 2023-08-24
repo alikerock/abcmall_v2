@@ -1,7 +1,5 @@
 <?php
 
-session_start(); 
-  // var_dump($_SESSION['AUID']);
 
   if(isset($_SESSION['AUID'])){
     if(!$_SESSION['AUID'] == 'admin'){

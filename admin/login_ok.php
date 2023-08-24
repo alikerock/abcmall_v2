@@ -1,6 +1,6 @@
 <?php
   session_start(); 
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/dbcon.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/dbcon.php';
 
   $userid = $_POST['userid'];
   $userpw = $_POST['passwd'];

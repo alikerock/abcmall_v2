@@ -1,5 +1,14 @@
 <?php
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/header.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/header.php';
+
+if(isset($_SESSION['AUID'])){
+  if($_SESSION['AUID'] == 'admin'){
+    echo "<script>
+      alert('이미 로그인 하셨습니다.');
+      location.href = '/abcmall/admin/index.php';
+    </script>";
+  }
+}
 ?>
 
 <div class="container">
