@@ -7,7 +7,9 @@
  
   <ul>
     <li><a href="/abcmall/admin/product/product_up.php">상품등록</a></li>
+    <li><a href="/abcmall/admin/product/product_list.php">상품리스트</a></li>
     <li><a href="/abcmall/admin/coupon/coupon_up.php">쿠폰등록</a></li>
+    <li><a href="/abcmall/admin/coupon/coupon_list.php">쿠폰리스트</a></li>
   </ul>
 
 </div>

@@ -20,11 +20,14 @@
 </head>
 <body>
 
+<a href="/abcmall/admin/index.php" class="btn btn-primary">홈</a>
+
 <?php
   if(isset($_SESSION['AUID'])){
     if($_SESSION['AUID'] == 'admin'){
   ?>
   <a href="/abcmall/admin/logout.php" class="btn btn-primary">로그아웃</a>
+
   <?php
     }
   } 

@@ -10,8 +10,7 @@
   $endLimit = $pageCount;
   $firstPageNumber = $_GET['firstPageNumber'] ?? 0 ;
 
-  //전체 게시물 수 구하기
-  
+  //전체 게시물 수 구하기  
   $pagesql = "SELECT COUNT(*) as cnt from products";
   $page_result = $mysqli->query($pagesql);
   $page_row = $page_result->fetch_object();
@@ -240,9 +239,7 @@
             }
             echo "<li class=\"page-item\"><a href=\"?pageNumber=$total_page\" class=\"page-link\">&gt;&gt;</a></li>";
           }
-        ?>    
-
-       
+        ?>           
       </ul>
     </nav>    
     <div class="d-flex justify-content-end">
@@ -256,7 +253,7 @@
 
 </div>
 
-<script src="../../js/makeoption.js"></script>
+<script src="/abcmall/admin/js/makeoption.js"></script>
 
 <script>
     $( "#end_date" ).datepicker({
