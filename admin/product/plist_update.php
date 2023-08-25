@@ -1,4 +1,5 @@
 <?php
+  session_start(); 
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/dbcon.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php';
 
@@ -18,6 +19,7 @@
 
     $query = "update products set ismain=".$ismain[$p].", isnew=".$isnew[$p].", isbest=".$isbest[$p].", isrecom=".$isrecom[$p].", status=".$stat[$p]." where pid=".$p;
     $rs=$mysqli->query($query) or die($mysqli->error);    
+
 }
  if($rs){
   echo "<script>

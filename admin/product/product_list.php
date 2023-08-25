@@ -1,33 +1,11 @@
 <?php
-
+  $title = '제품 목록';
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/header.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/category_func.php';
 
-  $pageNumber = $_GET['pageNumber'] ?? 1;
-  $pageCount = $_GET['pageCount'] ?? 10;
-  $statLimit = ($pageNumber-1)*$pageCount; // (1-1)*10 = 0, (2-1)*10 = 10
-  $endLimit = $pageCount;
-  $firstPageNumber = $_GET['firstPageNumber'] ?? 0 ;
-
-  //전체 게시물 수 구하기  
-  $pagesql = "SELECT COUNT(*) as cnt from products";
-  $page_result = $mysqli->query($pagesql);
-  $page_row = $page_result->fetch_object();
-  $row_num = $page_row->cnt; //전체 게시물 수
-  //echo $row_num;
-
-  $block_ct = 5; // 1,2,3,4,5  / 5,6,7,8,9 
-  $block_num = ceil($pageNumber/$block_ct);//pageNumber 1,  9/5 1.2 2
-  $block_start = (($block_num -1)*$block_ct) + 1;//page6 start 6
-  $block_end = $block_start + $block_ct -1; //start 1, end 5
-
-  $total_page = ceil($row_num/$pageCount); //총52, 52/5
-  if($block_end > $total_page) $block_end = $total_page;
-  $total_block = ceil($total_page/$block_ct);//총32, 2
-
-
-
+  $pagenationTarget = 'products';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/pagenation.php';
 
   $cates1 = $_GET['cate1'] ?? '';
   $cate2 = $_GET['cate2'] ?? '';
@@ -256,6 +234,15 @@
 <script src="/abcmall/admin/js/makeoption.js"></script>
 
 <script>
+    $('input[type="checkbox"]').click(function(){
+      let $this = $(this);
+      if($this.prop('checked')){//체크해서 활성되면
+        $this.val('1');
+      } else{
+        $this.val('0');
+      }
+    });
+
     $( "#end_date" ).datepicker({
     dateFormat:'yy-mm-dd'
   });
