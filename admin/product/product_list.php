@@ -7,7 +7,7 @@
   $pageNumber = $_GET['pageNumber'] ?? 1;
   $pageCount = $_GET['pageCount'] ?? 10;
   $statLimit = ($pageNumber-1)*$pageCount; // (1-1)*10 = 0, (2-1)*10 = 10
-  $endLimit = $statLimit + $pageCount;
+  $endLimit = $pageCount;
   $firstPageNumber = $_GET['firstPageNumber'] ?? 0 ;
 
   //전체 게시물 수 구하기
