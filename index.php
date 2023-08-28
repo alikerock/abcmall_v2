@@ -337,19 +337,25 @@ while($rs = $result -> fetch_object()){
         </section>
         <!-- ****** Popular Brands Area End ****** -->
     <script>
-        $('.product-quicview a').click(function(e){
-            e.preventDefault();
 
-            /*
-                클릭한 그 요소의 가장 가까운 부모중 single_gallery_item 를 찾고, 그 요소의 data-pid의값 변수명 modalId할당
-                변수명 data에 변수명 pid에 객체형식으로 생성
+            $('.product-quicview a').click(function(e){
+                e.preventDefault();                
+    
+                /*
+                    클릭한 그 요소의 가장 가까운 부모중 single_gallery_item 를 찾고, 그 요소의 data-pid의값 변수명 modalId할당
+                    변수명 data에 변수명 pid에 객체형식으로 생성
+    
+                    ajax로 modal.php에 post방식으로 pid 넘겨주고, modal.php에서 넘어온 값(name, price, thumbnail, content)들을 
+                    아이디 quickview의 해당 값들을 변경
+                */
+               let modalId = $(this).closest('.single_gallery_item').attr('data-pid');
+               let data = {
+                pid : modalId
+               }
+               
+               
+            });
 
-                ajax로 modal.php에 post방식으로 pid 넘겨주고, modal.php에서 넘어온 값(name, price, thumbnail, content)들을 
-                아이디 quickview의 해당 값들을 변경
-            */
-
-
-        });
     </script>
 
 <?php
