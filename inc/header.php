@@ -1,6 +1,7 @@
 <?php
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/dbcon.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +13,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>Karl - Fashion Ecommerce Template | Cart</title>
+    <title>Karl - Fashion Ecommerce Template | Home</title>
 
     <!-- Favicon  -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -99,14 +100,44 @@
     <div id="wrapper">
 
         <!-- ****** Header Area Start ****** -->
-        <header class="header_area bg-img background-overlay-white" style="background-image: url(img/bg-img/bg-1.jpg);">
+        <header class="header_area">
             <!-- Top Header Area Start -->
             <div class="top_header_area">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center justify-content-end">
 
-                        <div class="col-12 col-lg-7">
+                        <div class="col-12 col-lg-12">
                             <div class="top_single_area d-flex align-items-center">
+                                <!-- recent view Area -->
+                                <div class="header-cart-menu d-flex align-items-center mr-auto">
+                                    <!-- Cart Area -->
+                                    <div class="recentview">
+                                        <a href="#" id="header-recent-btn" target="_blank"><span
+                                                class="cart_quantity">2</span> <i class="ti-bag"></i> recent viewed</a>
+                                        <!-- Cart List Area Start -->
+                                        <ul class="recent-list">
+                                            <li>
+                                                <a href="#" class="image"><img src="img/product-img/product-10.jpg"
+                                                        class="cart-thumb" alt=""></a>
+                                                <div class="cart-item-desc">
+                                                    <h6><a href="#">Women's Fashion</a></h6>
+                                                    <h6>$20</h6>
+                                                </div>
+
+                                            </li>
+                                            <li>
+                                                <a href="#" class="image"><img src="img/product-img/product-11.jpg"
+                                                        class="cart-thumb" alt=""></a>
+                                                <div class="cart-item-desc">
+                                                    <h6><a href="#">Women's Fashion</a></h6>
+                                                    <h6>$20</h6>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
                                 <!-- Logo Area -->
                                 <div class="top_logo">
                                     <a href="#"><img src="img/core-img/logo.png" alt=""></a>
@@ -232,4 +263,3 @@
             </div>
         </section>
         <!-- ****** Top Discount Area End ****** -->
-
