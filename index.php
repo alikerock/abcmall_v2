@@ -209,7 +209,7 @@ while($rs = $result -> fetch_object()){
                   ?>
                     <!-- Single gallery Item Start -->
                     <div class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig"
-                        data-wow-delay="0.2s">
+                        data-wow-delay="0.2s" data-pid="<?php echo $item->pid ?>">
                         <!-- Product Image -->
                         <div class="product-img">
                             <img src="<?php echo $item->thumbnail ?>" alt="<?php echo $item->name ?>">
@@ -336,6 +336,21 @@ while($rs = $result -> fetch_object()){
             </div>
         </section>
         <!-- ****** Popular Brands Area End ****** -->
+    <script>
+        $('.product-quicview a').click(function(e){
+            e.preventDefault();
+
+            /*
+                클릭한 그 요소의 가장 가까운 부모중 single_gallery_item 를 찾고, 그 요소의 data-pid의값 변수명 modalId할당
+                변수명 data에 변수명 pid에 객체형식으로 생성
+
+                ajax로 modal.php에 post방식으로 pid 넘겨주고, modal.php에서 넘어온 값(name, price, thumbnail, content)들을 
+                아이디 quickview의 해당 값들을 변경
+            */
+
+
+        });
+    </script>
 
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/footer.php';
