@@ -1,5 +1,28 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/header.php';
+
+$pid = $_GET['pid'];
+  
+$sql = "SELECT * FROM products where pid={$pid}";
+$result = $mysqli -> query($sql);
+$rs = $result -> fetch_object();
+
+$sql2 = "SELECT * FROM product_options where pid={$pid}";
+$result2 = $mysqli -> query($sql2);
+//$rs2 = $result2 -> fetch_object();
+
+while($rs2 = $result2 -> fetch_object()){
+  $options[]=$rs2;
+}
+
+$sql3 = "SELECT * FROM product_image_table where pid={$pid}";
+$result3 = $mysqli -> query($sql3);
+//$rs2 = $result2 -> fetch_object();
+
+while($rs3 = $result3 -> fetch_object()){
+  $addImgs[]=$rs3;
+}
+
 ?>
 
         <!-- <<<<<<<<<<<<<<<<<<<< Breadcumb Area Start <<<<<<<<<<<<<<<<<<<< -->
@@ -30,37 +53,50 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/header.php';
                             <div id="product_details_slider" class="carousel slide" data-ride="carousel">
 
                                 <ol class="carousel-indicators">
-                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(img/product-img/product-9.jpg);">
+                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(<?= $rs->thumbnail; ?>);">
                                     </li>
-                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(img/product-img/product-2.jpg);">
-                                    </li>
-                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(img/product-img/product-3.jpg);">
-                                    </li>
-                                    <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url(img/product-img/product-4.jpg);">
-                                    </li>
+
+
+                                    <?php
+                                      $i = 1;
+                                      if(isset($addImgs)){
+                                        foreach($addImgs as $ai){
+                                    ?>   
+                                    <li data-target="#product_details_slider" data-slide-to="<?= $i; ?>" style="background-image: url(/abcmall/pdata/<?= $ai-> filename;?>);">
+                                    </li>          
+                                      
+                                    <?php 
+                                        $i++; 
+                                      }
+                                    }
+                                    ?>                                       
+                                    
+                                   
                                 </ol>
 
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <a class="gallery_img" href="img/product-img/product-9.jpg">
-                                        <img class="d-block w-100" src="img/product-img/product-9.jpg" alt="First slide">
-                                    </a>
+                                        <a class="gallery_img" href="<?= $rs->thumbnail; ?>">
+                                        <img class="d-block w-100" src="<?= $rs->thumbnail; ?>" alt="First slide">
+                                        </a>
                                     </div>
+
+                                    
+                                    <?php                               
+                                      if(isset($addImgs)){
+                                        foreach($addImgs as $ai){
+                                    ?>  
                                     <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/product-2.jpg">
-                                        <img class="d-block w-100" src="img/product-img/product-2.jpg" alt="Second slide">
-                                    </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/product-3.jpg">
-                                        <img class="d-block w-100" src="img/product-img/product-3.jpg" alt="Third slide">
-                                    </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/product-4.jpg">
-                                        <img class="d-block w-100" src="img/product-img/product-4.jpg" alt="Fourth slide">
-                                    </a>
-                                    </div>
+                                        <a class="gallery_img" href="/abcmall/pdata/<?= $ai-> filename;?>">
+                                        <img class="d-block w-100" src="/abcmall/pdata/<?= $ai-> filename;?>" alt="Second slide">
+                                        </a>
+                                    </div>                                              
+                                      
+                                    <?php                                        
+                                      }
+                                    }
+                                    ?>       
+                                    
                                 </div>
                             </div>
                         </div>
@@ -69,12 +105,10 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/header.php';
                     <div class="col-12 col-md-6">
                         <div class="single_product_desc">
 
-                            <h4 class="title"><a href="#">Long Yellow Dress</a></h4>
+                            <h4 class="title"><?= $rs->name; ?></h4>
 
-                            <h4 class="price">$ 39.99</h4>
-
-                            <p class="available">Available: <span class="text-muted">In Stock</span></p>
-
+                            <h4 class="price"><?= $rs->price; ?></h4>
+                            
                             <div class="single_product_ratings mb-15">
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -84,17 +118,21 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/header.php';
                             </div>
 
                             <div class="widget size mb-50">
-                                <h6 class="widget-title">Size</h6>
+                                <h6 class="widget-title"><?= $options[0] -> cate; ?></h6>
                                 <div class="widget-desc">
                                     <ul>
-                                        <li><a href="#">32</a></li>
-                                        <li><a href="#">34</a></li>
-                                        <li><a href="#">36</a></li>
-                                        <li><a href="#">38</a></li>
-                                        <li><a href="#">40</a></li>
-                                        <li><a href="#">42</a></li>
+                                    <?php
+                                        foreach($options as $op){
+                                      ?> 
+                                        <li>
+                                          <img src="<?= $op-> image_url;?>" alt="">
+                                          <span><?= $op-> option_price;?>원</span>
+                                        </li>
+                                        <?php      
+                                            }
+                                          ?>  
                                     </ul>
-                                </div>
+                                </div> 
                             </div>
 
                             <!-- Add to Cart Form -->
@@ -117,9 +155,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/header.php';
 
                                     <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
                                         <div class="card-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integ er bibendum sodales arcu id te mpus. Ut consectetur lacus.</p>
-                                            <p>Approx length 66cm/26" (Based on a UK size 8 sample) Mixed fibres</p>
-                                            <p>The Model wears a UK size 8/ EU size 36/ US size 4 and her height is 5'8"</p>
+                                          <?= $rs->content; ?>
                                         </div>
                                     </div>
                                 </div>

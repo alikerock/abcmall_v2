@@ -8,3 +8,12 @@ body{
 .signup label{
   width: 100px;
 }
+.widget-desc ul {
+  display: flex;
+}
+.widget-desc ul li{
+  width: 80px;
+}
+.widget-desc ul li img{
+  width: 100%;
+}
