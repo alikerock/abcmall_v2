@@ -23,6 +23,14 @@ while($rs3 = $result3 -> fetch_object()){
   $addImgs[]=$rs3;
 }
 
+$related_cate = substr($rs -> cate, -5);
+
+$rsql = "SELECT * FROM products where cate like '%{$related_cate}%'";
+$related_cate_rt = $mysqli -> query($rsql);
+
+while($rcr = $related_cate_rt -> fetch_object()){
+    $rr[]=$rcr;
+}
 ?>
 
         <!-- <<<<<<<<<<<<<<<<<<<< Breadcumb Area Start <<<<<<<<<<<<<<<<<<<< -->
@@ -276,95 +284,40 @@ while($rs3 = $result3 -> fetch_object()){
                     <div class="col-12">
                         <div class="you_make_like_slider owl-carousel">
 
-                            <!-- Single gallery Item -->
-                            <div class="single_gallery_item">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="img/product-img/product-1.jpg" alt="">
-                                    <div class="product-quicview">
-                                        <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                                    </div>
-                                </div>
-                                <!-- Product Description -->
-                                <div class="product-description">
-                                    <h4 class="product-price">$39.90</h4>
-                                    <p>Jeans midi cocktail dress</p>
-                                    <!-- Add to Cart -->
-                                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                                </div>
+                        <?php
+                  if(isset($rr)){
+                    foreach($rr as $item){            
+                  ?>
+                    <!-- Single gallery Item Start -->
+                    <div class="single_gallery_item">
+                        <!-- Product Image -->
+                        <div class="product-img">
+                            <img src="<?php echo $item->thumbnail ?>" alt="<?php echo $item->name ?>">
+                            <div class="product-quicview">
+                                <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
                             </div>
+                        </div>
+                        <!-- Product Description -->
+                        <div class="product-description">
+                            <h4 class="product-price"><?php echo $item->price ?></h4>
+                            <p><a href="product_details.php?pid=<?php echo $item->pid ?>"><?php echo $item->name ?></a></p>
+                            <!-- Add to Cart -->
+                            <a href="#" class="add-to-cart-btn">ADD TO CART</a>
+                        </div>
+                    </div>
 
-                            <!-- Single gallery Item -->
-                            <div class="single_gallery_item">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="img/product-img/product-2.jpg" alt="">
-                                    <div class="product-quicview">
-                                        <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                                    </div>
-                                </div>
-                                <!-- Product Description -->
-                                <div class="product-description">
-                                    <h4 class="product-price">$39.90</h4>
-                                    <p>Jeans midi cocktail dress</p>
-                                    <!-- Add to Cart -->
-                                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                                </div>
-                            </div>
+                    <?php
+                        }
+                      } else {
+                    ?>                    
+                      <div class="single_gallery_item">
+                          <p>조회 결과가 없습니다.</p>
+                      </div>
+                      <?php
+                        }   
+                      ?>
 
-                            <!-- Single gallery Item -->
-                            <div class="single_gallery_item">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="img/product-img/product-3.jpg" alt="">
-                                    <div class="product-quicview">
-                                        <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                                    </div>
-                                </div>
-                                <!-- Product Description -->
-                                <div class="product-description">
-                                    <h4 class="product-price">$39.90</h4>
-                                    <p>Jeans midi cocktail dress</p>
-                                    <!-- Add to Cart -->
-                                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                                </div>
-                            </div>
 
-                            <!-- Single gallery Item -->
-                            <div class="single_gallery_item">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="img/product-img/product-4.jpg" alt="">
-                                    <div class="product-quicview">
-                                        <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                                    </div>
-                                </div>
-                                <!-- Product Description -->
-                                <div class="product-description">
-                                    <h4 class="product-price">$39.90</h4>
-                                    <p>Jeans midi cocktail dress</p>
-                                    <!-- Add to Cart -->
-                                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                                </div>
-                            </div>
-
-                            <!-- Single gallery Item -->
-                            <div class="single_gallery_item">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="img/product-img/product-5.jpg" alt="">
-                                    <div class="product-quicview">
-                                        <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                                    </div>
-                                </div>
-                                <!-- Product Description -->
-                                <div class="product-description">
-                                    <h4 class="product-price">$39.90</h4>
-                                    <p>Jeans midi cocktail dress</p>
-                                    <!-- Add to Cart -->
-                                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
