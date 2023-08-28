@@ -220,7 +220,7 @@ while($rs = $result -> fetch_object()){
                         <!-- Product Description -->
                         <div class="product-description">
                             <h4 class="product-price"><?php echo $item->price ?></h4>
-                            <p><?php echo $item->name ?></p>
+                            <p><a href="product_details.php?pid=<?php echo $item->pid ?>"><?php echo $item->name ?></a></p>
                             <!-- Add to Cart -->
                             <a href="#" class="add-to-cart-btn">ADD TO CART</a>
                         </div>
