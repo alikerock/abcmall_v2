@@ -361,7 +361,7 @@ while($rs = $result -> fetch_object()){
                         console.log(error);
                     },
                     success:function(returned_data){
-                        console.log(returned_data.name);
+                        console.log(returned_data);
                     }
                 });               
             });
