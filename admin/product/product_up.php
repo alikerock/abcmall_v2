@@ -195,7 +195,7 @@
   </form>
 </div>
 
-<script src="../../js/makeoption.js"></script>
+<script src="/abcmall/admin/js/makeoption.js"></script>
 
 <script>
   var uploadFiles = [];

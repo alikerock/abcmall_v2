@@ -164,8 +164,16 @@ if(isset($_COOKIE['recent_view_pd'])){ //recent_view_pd이름의 쿠키 존재�
                                     <?php
                                         if(isset($options)){
                                         foreach($options as $op){
+
+                                            if($op -> cate == '사이즈'){
+                                                $cate = 'size';
+                                            } else if($op -> cate == '컬러'){
+                                                $cate = 'color';
+                                            }
                                       ?> 
                                         <li>
+                                            <label for="poid<?= $op-> poid;?>"><?= $op-> option_name;?></label>
+                                            <input type="radio" name="poid<?= $cate;?>" id="poid<?= $op-> poid;?>" value="<?= $op-> option_name;?>" data-price="<?= $op-> option_price;?>">
                                           <img src="<?= $op-> image_url;?>" alt="">
                                           <span><?= $op-> option_price;?>원</span>
                                         </li>
@@ -178,13 +186,16 @@ if(isset($_COOKIE['recent_view_pd'])){ //recent_view_pd이름의 쿠키 존재�
                             </div>
 
                             <!-- Add to Cart Form -->
-                            <form class="cart clearfix mb-50 d-flex" method="post">
-                                <div class="quantity">
-                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                    <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
-                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                            <form class="cart mb-50" method="post">
+                                <div class="d-flex">
+                                    <div class="quantity">
+                                        <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
+                                        <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                    </div>
+                                    <button type="submit" name="addtocart" value="5" class="btn cart-submit d-block">Add to cart</button>                                    
                                 </div>
-                                <button type="submit" name="addtocart" value="5" class="btn cart-submit d-block">Add to cart</button>
+                                <h4 class="mt-50">Total Amount: <span class="totalprice"><?= $rs->price; ?></span>원</h4>
                             </form>
 
                             <div id="accordion" role="tablist">
