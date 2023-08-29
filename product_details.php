@@ -378,6 +378,7 @@ if(isset($_COOKIE['recent_view_pd'])){ //recent_view_pd이름의 쿠키 존재�
         </section>
 
         <script>
+            
             if($('.widget-desc input').length > 0){
                 var optionbutton = $('.widget-desc input');
                 optionbutton.on('change',calcCart);

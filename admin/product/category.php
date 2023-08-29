@@ -157,7 +157,7 @@
   </div>
 </div> <!-- //Modal 3 -->
 
-<script src="../../js/makeoption.js"></script>
+<script src="/abcmall/admin/js/makeoption.js"></script>
 <script>
 
   let categorySubmitBtn = $('.modal button[type="submit"]');
