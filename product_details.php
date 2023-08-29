@@ -378,11 +378,15 @@ if(isset($_COOKIE['recent_view_pd'])){ //recent_view_pd이름의 쿠키 존재�
         </section>
 
         <script>
-            let optionbutton = $('.widget-desc input');
+            if($('.widget-desc input').length > 0){
+                var optionbutton = $('.widget-desc input');
+                optionbutton.on('change',calcCart);
+            } 
+
             let qty = $('#qty');
             let unitprice = <?= $rs->price; ?>;
 
-            optionbutton.on('change',calcCart);
+           
 
             $('.quantity .qty-plus').click(function(){
                 let value = qty.val();
@@ -398,20 +402,16 @@ if(isset($_COOKIE['recent_view_pd'])){ //recent_view_pd이름의 쿠키 존재�
             });
 
             function calcCart(){
-                let option_price = Number(optionbutton.filter(':checked').attr('data-price'));
+                let option_price = 0;
+                if($('.widget-desc input').length > 0){
+                    option_price = Number(optionbutton.filter(':checked').attr('data-price'));
+                } 
                 let cnt = Number(qty.val());
                 console.log(unitprice, option_price, cnt);
                 $('.totalprice').text(unitprice*cnt + option_price*cnt);
                 $('.number').number(true);
             }
             calcCart();
-
-            /*            
-            함수 calcCart할일은
-                radio버튼중 check된 그 radio의 버튼의 가격을 변수명 option_price에 담고
-                상품수량*상품단가 + 옵션가격*상품수량을 더해서
-                total Amount 값을 변경
-            */
         </script>
 
 
