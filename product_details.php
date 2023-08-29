@@ -369,6 +369,25 @@ if(isset($_COOKIE['recent_view_pd'])){ //recent_view_pd이름의 쿠키 존재�
             </div>
         </section>
 
+        <script>
+            let optionbutton = $('.widget-desc input');
+            let qty = $('#qty');
+
+            optionbutton.on('change',calcCart);
+            qty.on('change',calcCart);
+
+            function calcCart(){
+
+            }
+
+            /*            
+            함수 calcCart할일은
+                radio버튼중 check된 그 radio의 버튼의 가격을 변수명 option_price에 담고
+                상품수량*상품단가 + 옵션가격을 더해서
+                total Amount 값을 변경
+            */
+        </script>
+
 
 <?php
 ob_end_flush();
