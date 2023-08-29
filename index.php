@@ -336,6 +336,9 @@ while($rs = $result -> fetch_object()){
             </div>
         </section>
         <!-- ****** Popular Brands Area End ****** -->
+
+  
+
     <script>
             let modal = $('#quickview');
 
