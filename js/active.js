@@ -210,4 +210,6 @@
         new WOW().init();
     }
 
+    $('.number').number(true);
+
 })(jQuery);

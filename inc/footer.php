@@ -88,6 +88,7 @@
     <!-- Plugins js -->
     <script src="js/plugins.js"></script>
     <!-- Active js -->
+    <script src="js/jquery.number.min.js"></script>      
     <script src="js/active.js"></script>      
 
 

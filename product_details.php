@@ -147,7 +147,7 @@ if(isset($_COOKIE['recent_view_pd'])){ //recent_view_pd이름의 쿠키 존재�
 
                             <h4 class="title"><?= $rs->name; ?></h4>
 
-                            <h4 class="price"><?= $rs->price; ?></h4>
+                            <h4 class="price number"><?= $rs->price; ?></h4>
                             
                             <div class="single_product_ratings mb-15">
                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -162,6 +162,7 @@ if(isset($_COOKIE['recent_view_pd'])){ //recent_view_pd이름의 쿠키 존재�
                                 <div class="widget-desc">
                                     <ul>
                                     <?php
+                                        $oi = 0;
                                         if(isset($options)){
                                         foreach($options as $op){
 
@@ -170,14 +171,21 @@ if(isset($_COOKIE['recent_view_pd'])){ //recent_view_pd이름의 쿠키 존재�
                                             } else if($op -> cate == '컬러'){
                                                 $cate = 'color';
                                             }
+                                            
+                                            if($oi == 0){
+                                                $checked = 'checked';
+                                            } else {
+                                                $checked = '';
+                                            }
                                       ?> 
                                         <li>
                                             <label for="poid<?= $op-> poid;?>"><?= $op-> option_name;?></label>
-                                            <input type="radio" name="poid<?= $cate;?>" id="poid<?= $op-> poid;?>" value="<?= $op-> option_name;?>" data-price="<?= $op-> option_price;?>">
+                                            <input type="radio" name="poid<?= $cate;?>" id="poid<?= $op-> poid;?>" value="<?= $op-> option_name;?>" data-price="<?= $op-> option_price;?>" <?= $checked;?> >
                                           <img src="<?= $op-> image_url;?>" alt="">
-                                          <span><?= $op-> option_price;?>원</span>
+                                          <span class="number"><?= $op-> option_price;?>원</span>
                                         </li>
-                                        <?php      
+                                        <?php  
+                                            $oi++;    
                                             }
                                         }
                                           ?>  
@@ -189,13 +197,13 @@ if(isset($_COOKIE['recent_view_pd'])){ //recent_view_pd이름의 쿠키 존재�
                             <form class="cart mb-50" method="post">
                                 <div class="d-flex">
                                     <div class="quantity">
-                                        <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                        <span class="qty-minus"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                         <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
-                                        <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                        <span class="qty-plus"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                     </div>
                                     <button type="submit" name="addtocart" value="5" class="btn cart-submit d-block">Add to cart</button>                                    
                                 </div>
-                                <h4 class="mt-50">Total Amount: <span class="totalprice"><?= $rs->price; ?></span>원</h4>
+                                <h4 class="mt-50">Total Amount: <span class="totalprice number"><?= $rs->price; ?></span>원</h4>
                             </form>
 
                             <div id="accordion" role="tablist">
@@ -372,18 +380,36 @@ if(isset($_COOKIE['recent_view_pd'])){ //recent_view_pd이름의 쿠키 존재�
         <script>
             let optionbutton = $('.widget-desc input');
             let qty = $('#qty');
+            let unitprice = <?= $rs->price; ?>;
 
             optionbutton.on('change',calcCart);
-            qty.on('change',calcCart);
+
+            $('.quantity .qty-plus').click(function(){
+                let value = qty.val();
+                value++;
+                qty.val(value);
+                calcCart();
+            });
+            $('.quantity .qty-minus').click(function(){
+                let value = qty.val();
+                if(value > 1){ value--; }
+                qty.val(value);
+                calcCart();
+            });
 
             function calcCart(){
-
+                let option_price = Number(optionbutton.filter(':checked').attr('data-price'));
+                let cnt = Number(qty.val());
+                console.log(unitprice, option_price, cnt);
+                $('.totalprice').text(unitprice*cnt + option_price*cnt);
+                $('.number').number(true);
             }
+            calcCart();
 
             /*            
             함수 calcCart할일은
                 radio버튼중 check된 그 radio의 버튼의 가격을 변수명 option_price에 담고
-                상품수량*상품단가 + 옵션가격을 더해서
+                상품수량*상품단가 + 옵션가격*상품수량을 더해서
                 total Amount 값을 변경
             */
         </script>
