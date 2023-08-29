@@ -158,10 +158,11 @@ if(isset($_COOKIE['recent_view_pd'])){ //recent_view_pd이름의 쿠키 존재�
                             </div>
 
                             <div class="widget size mb-50">
-                                <h6 class="widget-title"><?= $options[0] -> cate; ?></h6>
+                                <h6 class="widget-title"><?php if(isset($options)){ $options[0] -> cate; }?></h6>
                                 <div class="widget-desc">
                                     <ul>
                                     <?php
+                                        if(isset($options)){
                                         foreach($options as $op){
                                       ?> 
                                         <li>
@@ -170,6 +171,7 @@ if(isset($_COOKIE['recent_view_pd'])){ //recent_view_pd이름의 쿠키 존재�
                                         </li>
                                         <?php      
                                             }
+                                        }
                                           ?>  
                                     </ul>
                                 </div> 
