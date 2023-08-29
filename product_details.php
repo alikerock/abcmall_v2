@@ -1,4 +1,6 @@
 <?php
+ob_start(); 
+
 include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/header.php';
 
 $pid = $_GET['pid'];
@@ -34,7 +36,11 @@ while($rcr = $related_cate_rt -> fetch_object()){
 
 $i = 0; //쿠키에 상품정보를 등록할 때 사용할 인덱스
 
-if($_COOKIE['recent_view_pd']){ //recent_view_pd이름의 쿠키 존재유무
+
+
+
+
+if(isset($_COOKIE['recent_view_pd'])){ //recent_view_pd이름의 쿠키 존재유무
     $pvc = json_decode($_COOKIE['recent_view_pd']);//쿠키의 json값을 배열로 변경
     if(!in_array($rs, $pvc)){
         if(sizeof($pvc)>=3){ //이미 3개의 쿠키가 있다면 
@@ -352,5 +358,7 @@ if($_COOKIE['recent_view_pd']){ //recent_view_pd이름의 쿠키 존재유무
 
 
 <?php
+ob_end_flush();
+
 include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/footer.php';
 ?>

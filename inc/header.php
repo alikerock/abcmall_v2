@@ -118,24 +118,26 @@
                                                 class="cart_quantity">2</span> <i class="ti-bag"></i> recent viewed</a>
                                         <!-- Cart List Area Start -->
                                         <ul class="recent-list">
+                                            <?php
+                                                if(isset($_COOKIE['recent_view_pd'])){ 
+                                                    $prc = json_decode($_COOKIE['recent_view_pd']);
+                                                    krsort($prc); //최근 상품 위로 올라오도록 key값을 기준으로 역순으로 정렬.
+                                                
+                                                foreach($prc as $pc){                                               
+                                            ?>
                                             <li>
-                                                <a href="#" class="image"><img src="img/product-img/product-10.jpg"
-                                                        class="cart-thumb" alt=""></a>
+                                                <a href="#" class="image">
+                                                    <img src="<?= $pc -> thumbnail; ?>" class="cart-thumb" alt="">
+                                                    </a>
                                                 <div class="cart-item-desc">
-                                                    <h6><a href="#">Women's Fashion</a></h6>
-                                                    <h6>$20</h6>
+                                                    <h6><a href="/abcmall/product_details.php?pid=<?= $pc -> pid;?>"><?= $pc -> name; ?></a></h6>
+                                                    <h6><?= $pc -> price; ?></h6>
                                                 </div>
-
-                                            </li>
-                                            <li>
-                                                <a href="#" class="image"><img src="img/product-img/product-11.jpg"
-                                                        class="cart-thumb" alt=""></a>
-                                                <div class="cart-item-desc">
-                                                    <h6><a href="#">Women's Fashion</a></h6>
-                                                    <h6>$20</h6>
-                                                </div>
-                                            </li>
-
+                                            </li>                                           
+                                            <?php
+                                                }
+                                            }
+                                            ?>
                                         </ul>
                                     </div>
 
