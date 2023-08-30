@@ -12,7 +12,8 @@
   
   
   // 코드와 분류명을 사용하고 있는지 확인
-  $query = "select cid from category where step=".$step." and (name='".$name."')";
+  $query = "select cid from category where step=".$step." and name='".$name."' and pcode='".$pcode."'";
+  
   $result = $mysqli->query($query);
 
   $rs = $result->fetch_object();
