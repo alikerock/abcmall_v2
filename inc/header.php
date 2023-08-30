@@ -26,6 +26,7 @@
     <link href="css/responsive.css" rel="stylesheet">
     <!-- jQuery (Necessary for All JavaScript Plugins) -->   
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="js/jquery.number.min.js"></script>  
 
 </head>
 

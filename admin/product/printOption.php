@@ -10,7 +10,7 @@
   $result = $mysqli -> query($query); //쿼리실행결과를 $result 할당
 
   while($rs = $result -> fetch_object()){
-      $html.= "<option value=\"".$rs->code."\">".$rs->name."</option>";
+      $html.= "<option value=\"".$rs->cid."\">".$rs->name."</option>";
   }
   echo $html;
 ?>

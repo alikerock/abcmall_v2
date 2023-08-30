@@ -2,7 +2,7 @@
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/dbcon.php';
 
   $name = $_POST['name'];
-  $code = $_POST['code'];
+  // $code = $_POST['code'];
   if(isset($_POST['pcode'])){
     $pcode = $_POST['pcode'];  
   } else{
@@ -12,7 +12,7 @@
   
   
   // 코드와 분류명을 사용하고 있는지 확인
-  $query = "select cid from category where step=".$step." and (name='".$name."' or code='".$code."')";
+  $query = "select cid from category where step=".$step." and (name='".$name."')";
   $result = $mysqli->query($query);
 
   $rs = $result->fetch_object();

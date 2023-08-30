@@ -14,7 +14,7 @@
           <?php
           foreach($cate1 as $c){            
         ?>
-          <option value="<?php echo $c->code ?>"><?php echo $c->name ?></option>
+          <option value="<?php echo $c->cid ?>"><?php echo $c->name ?></option>
           <?php } ?>
         </select>
       </div>
@@ -49,10 +49,10 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <input type="text" class="form-control" name="code1" id="code1" placeholder="코드명">
-          </div>
-          <div class="col-md-6">
+          </div> -->
+          <div class="col-md-12">
           <input type="text" class="form-control" name="name1" id="name1" placeholder="대분류명">
           </div>
         </div>
@@ -91,14 +91,14 @@
               <?php
               foreach($cate2 as $p){            
             ?>
-              <option value="<?php echo $p->code ?>"><?php echo $p->name ?></option>
+              <option value="<?php echo $p->cid ?>"><?php echo $p->name ?></option>
               <?php } ?>
             </select>
           </div>          
         </div>
         <div class="row mt-3">
           <div class="col-md-6">
-            <input type="text" class="form-control" name="code2" id="code2" placeholder="코드명">
+            <input type="hidden" class="form-control" name="code2" id="code2" value="" placeholder="코드명">
           </div>
           <div class="col-md-6">
           <input type="text" class="form-control" name="name2" id="name2" placeholder="중분류명">
@@ -129,7 +129,7 @@
             <?php
               foreach($cate1 as $c){            
             ?>
-              <option value="<?php echo $c->code ?>"><?php echo $c->name ?></option>
+              <option value="<?php echo $c->cid ?>"><?php echo $c->name ?></option>
             <?php } ?>
             </select>
           </div>
@@ -162,32 +162,36 @@
 
   let categorySubmitBtn = $('.modal button[type="submit"]');
 
+  $('#pcode2').change(function(){    
+    $('#code2').val($(this).val());
+  });
+    
   categorySubmitBtn.click(function(){
     let step = $(this).attr('data-step');
     save_category(step);
   });
 
   function save_category(step){
-    let code = $(`#code${step}`).val(); //$('#code1').val()
+    // let code = $(`#code${step}`).val(); //$('#code1').val()
     let name = $(`#name${step}`).val();
-    let pcode = $(`#pcode${step} option:selected`).val();
+    let pcode = $(`#code2${step}`).val();
 
     if(step > 1 && !pcode){
       alert('대분류를 먼저 선택하세요');
       return; //아무것도 반환하지 않고 종료
     }    
-    if(!code){
-      alert('코드명을 입력하세요');
-      return; 
-    }
+    // if(!code){
+    //   alert('코드명을 입력하세요');
+    //   return; 
+    // }
     if(!name){
       alert('분류명을 입력하세요');
       return; 
     }
     let data = {
       name:name,
-      code:code,
-      pcode:pcode,
+      // code:code,
+      // pcode:pcode,
       step:step
     }
     console.log(data);
