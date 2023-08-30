@@ -1,7 +1,7 @@
 <?php
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/dbcon.php';
 
-  $cate = $_POST['cate'];
+  $cate = $_POST['cate']; //부모분류의 cid
   $step = $_POST['step'];
   $category = $_POST['category'];
 

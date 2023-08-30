@@ -97,10 +97,10 @@
           </div>          
         </div>
         <div class="row mt-3">
-          <div class="col-md-6">
+          
             <input type="hidden" class="form-control" name="code2" id="code2" value="" placeholder="코드명">
-          </div>
-          <div class="col-md-6">
+          
+          <div class="col-md-12">
           <input type="text" class="form-control" name="name2" id="name2" placeholder="중분류명">
           </div>
         </div>
@@ -141,10 +141,10 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
-            <input type="text" class="form-control" name="code3" id="code3" placeholder="코드명">
-          </div>
-          <div class="col-md-6">
+          
+            <input type="hidden" class="form-control" name="code3" id="code3" placeholder="코드명">
+          
+          <div class="col-md-12">
           <input type="text" class="form-control" name="name3" id="name3" placeholder="소분류명">
           </div>
         </div>
@@ -165,6 +165,10 @@
   $('#pcode2').change(function(){    
     $('#code2').val($(this).val());
   });
+
+  $('#pcode3').change(function(){    
+    $('#code3').val($(this).val());
+  });
     
   categorySubmitBtn.click(function(){
     let step = $(this).attr('data-step');
@@ -174,7 +178,8 @@
   function save_category(step){
     // let code = $(`#code${step}`).val(); //$('#code1').val()
     let name = $(`#name${step}`).val();
-    let pcode = $(`#code2${step}`).val();
+    let pcode = $(`#code${step}`).val();
+    let modalCloseBtn = $(`#cate${step}Modal .btn-close`);
 
     if(step > 1 && !pcode){
       alert('대분류를 먼저 선택하세요');
@@ -191,7 +196,7 @@
     let data = {
       name:name,
       // code:code,
-      // pcode:pcode,
+      pcode:pcode,
       step:step
     }
     console.log(data);
@@ -210,6 +215,7 @@
 
         if(return_data.result == 1){
           alert('등록성공');
+          modalCloseBtn.trigger('click');
         } else if(return_data.result == -1){
           alert('코드나 분류명이 이미 사용중입니다.');
           location.reload();//새로고침

@@ -26,7 +26,7 @@
   
   
   $sql="INSERT INTO category 
-  (code, pcode, name, step) VALUES('".$code."', '".$pcode."', '".$name."', ".$step.")";
+  (pcode, name, step) VALUES('".$pcode."', '".$name."', ".$step.")";
   $result=$mysqli->query($sql);
 
   if($result){
