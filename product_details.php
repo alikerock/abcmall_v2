@@ -422,6 +422,47 @@ if(isset($_COOKIE['recent_view_pd'])){ //recent_view_pd이름의 쿠키 존재�
                 $('.number').number(true);
             }
             calcCart();
+
+            $('.cart-submit').click(function(e){ 
+                    e.preventDefault();
+                    cart_insert();
+            });
+            function cart_insert(){
+                let pid = <?= $pid; ?>;
+                let optionname = '<?= $op -> cate; ?>';
+                let optionval = $('.widget-desc input:checked').val();
+                let options = optionname+'-'+optionval;
+                let cnt = $('#qty').val();  
+                let total = Number($('.totalprice').text().replace(',',''));
+
+                let data = {
+                    pid : pid,
+                    opts : options,
+                    cnt : cnt,
+                    total: total
+                }
+                console.log(data);
+                $.ajax({
+                    async:false,
+                    type:'post',
+                    url:'cart_insert.php',
+                    data: data,
+                    dataType:'json',
+                    error:function(error){
+                        console.log(error);
+                    },
+                    success:function(data){
+                        if(data.result == 'ok'){
+                            alert('장바구니에 추가되었습니다.');
+                        } else{
+                            alert('장바구니 담기 실패');
+                        }
+                    }
+                });
+
+            }
+
+
         </script>
 
 
