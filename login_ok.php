@@ -16,7 +16,7 @@
     $_SESSION['UNAME'] = $rs->username;
 
     echo "<script>
-      alert('$rs->username님 반갑습니다');
+      alert('$rs->username 님 반갑습니다');
       location.href = '/abcmall/index.php';
     </script>";
   } else{

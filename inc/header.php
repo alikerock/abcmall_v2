@@ -100,7 +100,7 @@
             </div>
 
             <?php
-                if(isset($_SESSION['UNAME'])){   
+                if(isset($_SESSION['UID'])){   
             ?>
             <h5><?= $_SESSION['UNAME']; ?>님 로그인되어 있습니다.</h5>
             <p><a href="logout.php">Logout</a></p>    
