@@ -15,7 +15,7 @@
     $userid = '';
   }
   $sql = "INSERT INTO cart (
-    (pid, userid, ssid, options, cnt, regdate, total)
+    pid, userid, ssid, options, cnt, regdate, total
   ) VALUES (
     '{$pid}','{$userid}','{$ssid}','{$opts}','{$cnt}',now(), {$total}
   )";
