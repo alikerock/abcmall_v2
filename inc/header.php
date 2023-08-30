@@ -1,4 +1,5 @@
 <?php
+  session_start(); 
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/dbcon.php';
 ?>
 
@@ -97,6 +98,25 @@
                     </li>
                 </ul>
             </div>
+
+            <?php
+                if(isset($_SESSION['UNAME'])){   
+            ?>
+            <h5><?= $_SESSION['UNAME']; ?>님 로그인되어 있습니다.</h5>
+            <p><a href="logout.php">Logout</a></p>    
+
+            <?php  
+                } else {
+            ?>
+
+            <p><a href="/abcmall/login.php">Login</a></p>
+
+            <?php  
+                }
+            ?>
+
+            
+            
         </div>
     </div>
 
