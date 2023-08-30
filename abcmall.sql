@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- 생성 시간: 23-08-30 06:20
+-- 생성 시간: 23-08-30 08:36
 -- 서버 버전: 10.4.28-MariaDB
 -- PHP 버전: 8.2.4
 
@@ -44,7 +44,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`idx`, `userid`, `email`, `username`, `passwd`, `regdate`, `level`, `last_login`, `end_login`) VALUES
-(1, 'admin', 'admin@shop.com', '관리자', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2023-01-01 17:12:32', 100, '2023-08-30 12:35:38', NULL);
+(1, 'admin', 'admin@shop.com', '관리자', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2023-01-01 17:12:32', 100, '2023-08-30 14:45:27', NULL);
 
 -- --------------------------------------------------------
 
@@ -59,8 +59,17 @@ CREATE TABLE `cart` (
   `ssid` varchar(100) DEFAULT NULL,
   `options` varchar(100) DEFAULT NULL,
   `cnt` int(11) DEFAULT NULL,
-  `regdate` datetime DEFAULT NULL
+  `regdate` datetime DEFAULT NULL,
+  `total` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 테이블의 덤프 데이터 `cart`
+--
+
+INSERT INTO `cart` (`cartid`, `pid`, `userid`, `ssid`, `options`, `cnt`, `regdate`, `total`) VALUES
+(1, 16, '', '5mk3t3d48sqp38em639pb78hmb', '사이즈-대', 1, '2023-08-30 15:31:22', 21000),
+(2, 16, 'alikerock', '', '사이즈-대', 1, '2023-08-30 15:34:14', 21000);
 
 -- --------------------------------------------------------
 
@@ -408,7 +417,7 @@ ALTER TABLE `admins`
 -- 테이블의 AUTO_INCREMENT `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 테이블의 AUTO_INCREMENT `category`
