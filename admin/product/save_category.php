@@ -3,16 +3,21 @@
 
   $name = $_POST['name'];
   // $code = $_POST['code'];
+
+  $search_where ='';
+
   if(isset($_POST['pcode'])){
     $pcode = $_POST['pcode'];  
+    $search_where .= " and pcode='".$pcode."'";
   } else{
     $pcode = '';  
   }
   $step = $_POST['step'];
-  
+ 
   
   // 코드와 분류명을 사용하고 있는지 확인
-  $query = "select cid from category where step=".$step." and name='".$name."' and pcode='".$pcode."'";
+  $query = "select cid from category where step=".$step." and name='".$name."'";
+  $query .= $search_where;
   
   $result = $mysqli->query($query);
 

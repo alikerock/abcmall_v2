@@ -215,7 +215,7 @@
 
         if(return_data.result == 1){
           alert('등록성공');
-          modalCloseBtn.trigger('click');
+          location.reload();//새로고침
         } else if(return_data.result == -1){
           alert('코드나 분류명이 이미 사용중입니다.');
           location.reload();//새로고침
