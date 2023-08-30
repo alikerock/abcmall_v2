@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- 생성 시간: 23-08-28 05:31
+-- 생성 시간: 23-08-30 03:56
 -- 서버 버전: 10.4.28-MariaDB
 -- PHP 버전: 8.2.4
 
@@ -44,7 +44,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`idx`, `userid`, `email`, `username`, `passwd`, `regdate`, `level`, `last_login`, `end_login`) VALUES
-(1, 'admin', 'admin@shop.com', '관리자', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2023-01-01 17:12:32', 100, '2023-08-28 09:24:25', NULL);
+(1, 'admin', 'admin@shop.com', '관리자', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2023-01-01 17:12:32', 100, '2023-08-30 09:35:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -66,13 +66,18 @@ CREATE TABLE `category` (
 
 INSERT INTO `category` (`cid`, `code`, `pcode`, `name`, `step`) VALUES
 (1, 'A0001', NULL, '컴퓨터', 1),
-(2, 'B0001', 'A0001', '노트북', 2),
-(3, 'C0001', 'B0001', '게임용', 3),
+(2, 'B0001', '1', '노트북', 2),
+(3, 'C0001', '2', '게임용', 3),
 (4, 'A0002', '', '핸드폰', 1),
 (5, 'A0003', '', '태블릿', 1),
 (6, 'A0004', '', '스마트기기', 1),
-(7, 'B0002', 'A0001', '맥북', 2),
-(8, 'C0002', 'B0001', '그램', 3);
+(7, 'B0002', '1', '맥북', 2),
+(8, 'C0002', '2', '그램', 3),
+(9, '', '', '서버', 1),
+(10, '', '9', '웹서버', 2),
+(11, '', '10', '호스팅 서버', 3),
+(12, NULL, '', '이도령', 1),
+(13, NULL, '', '성춘향', 1);
 
 -- --------------------------------------------------------
 
@@ -180,7 +185,9 @@ INSERT INTO `products` (`pid`, `name`, `cate`, `content`, `thumbnail`, `price`, 
 (14, '이도령', 'A0001B0001C0001', '<p>본문 테스트</p>', '/abcmall/pdata/20230821101852151748.jpg', 20000, 0, 0, 0, 0, 1, 1, 0, 0, 1, 'admin', '2024-02-21 00:00:00', '2023-08-21 17:18:52', 0, 0, '35,36,37', ''),
 (15, 'ㅅㄷㄴㅅ', 'A0001B0001C0001', '<p>ㅅㄷㄴㅅ</p>', '/abcmall/pdata/20230821102100773044.jpg', 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 'admin', '2024-02-21 00:00:00', '2023-08-21 17:21:00', 0, 0, '38,39', ''),
 (16, 'TEST', 'A0001B0001C0001', '<div style=\"color: rgb(0, 0, 0); font-family: Consolas, &quot;Courier New&quot;, monospace; font-size: 14px; line-height: 19px; white-space: pre;\">test</div>', '/abcmall/pdata/20230821102303209771.jpg', 20000, 0, 0, 0, 0, 0, 1, 0, 0, 1, 'admin', '2024-02-21 00:00:00', '2023-08-21 17:23:03', 1, 0, '40,41', ''),
-(17, 'ㅅㄷㄴㅅ', 'A0001B0001C0001', '<p>test</p>', '/abcmall/pdata/20230821102424964901.jpg', 30000, 0, 0, 0, 0, 1, 1, 0, 1, 0, 'admin', '2024-02-21 00:00:00', '2023-08-21 17:24:24', -1, 0, '', '');
+(17, 'ㅅㄷㄴㅅ', 'A0001B0001C0001', '<p>test</p>', '/abcmall/pdata/20230821102424964901.jpg', 30000, 0, 0, 0, 0, 1, 1, 0, 1, 0, 'admin', '2024-02-21 00:00:00', '2023-08-21 17:24:24', -1, 0, '', ''),
+(20, '테스트18', 'A0001B0001C0001', '<p>상품 설명 테스트&nbsp;</p><p>상품 설명 테스트&nbsp;</p><p>상품 설명 테스트&nbsp;</p><p>상품 설명 테스트&nbsp;</p><p>상품 설명 테스트&nbsp;<br></p>', '/abcmall/pdata/20230829051424892335.jpg', 60000, 0, 0, 0, 0, 0, 0, 0, 0, 1, 'admin', '2024-02-29 00:00:00', '2023-08-29 12:14:24', 0, 0, '', NULL),
+(22, '테스트21', 'A0001', '<p>상품 설명 테스트</p>', '/abcmall/pdata/20230829051811780454.jpg', 40000, 0, 0, 0, 0, 1, 0, 0, 0, 1, 'admin', '2024-02-29 00:00:00', '2023-08-29 12:18:11', 0, 0, '', NULL);
 
 -- --------------------------------------------------------
 
@@ -274,7 +281,9 @@ INSERT INTO `product_options` (`poid`, `pid`, `cate`, `option_name`, `option_cnt
 (12, 16, '사이즈', '대', 10, 1000, '/abcmall/pdata/option/20230821102424252669.jpg\r\n', 1),
 (13, 16, '사이즈', '중', 5, 500, '/abcmall/pdata/option/20230821102425244793.jpg\r\n', 1),
 (14, 17, '사이즈', '대', 5, 1000, '/abcmall/pdata/option/20230821102424252669.jpg', 1),
-(15, 17, '사이즈', '중', 2, 2000, '/abcmall/pdata/option/20230821102425244793.jpg', 1);
+(15, 17, '사이즈', '중', 2, 2000, '/abcmall/pdata/option/20230821102425244793.jpg', 1),
+(16, 22, '사이즈', '대', 10, 1000, '/abcmall/pdata/option/20230829051811143743.jpg', 1),
+(17, 22, '사이즈', '중', 5, 500, '/abcmall/pdata/option/20230829051811935269.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -368,7 +377,7 @@ ALTER TABLE `admins`
 -- 테이블의 AUTO_INCREMENT `category`
 --
 ALTER TABLE `category`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- 테이블의 AUTO_INCREMENT `coupons`
@@ -386,7 +395,7 @@ ALTER TABLE `members`
 -- 테이블의 AUTO_INCREMENT `products`
 --
 ALTER TABLE `products`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- 테이블의 AUTO_INCREMENT `product_image_table`
@@ -398,7 +407,7 @@ ALTER TABLE `product_image_table`
 -- 테이블의 AUTO_INCREMENT `product_options`
 --
 ALTER TABLE `product_options`
-  MODIFY `poid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `poid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- 테이블의 AUTO_INCREMENT `user_coupons`
