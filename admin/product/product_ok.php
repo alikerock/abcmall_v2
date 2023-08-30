@@ -30,7 +30,7 @@ try{
   $cate3 =  $_POST['cate3']??'' ;
 
 
-  $cate = $cate1.$cate2.$cate3;
+  $cate = $cate1.'/'.$cate2.'/'.$cate3;
   $name = $_POST['name'];
   $price = $_POST['price']??'' ;
   $ismain = $_POST['ismain']??0 ;

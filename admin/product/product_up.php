@@ -30,7 +30,7 @@
                   <?php
                   foreach($cate1 as $c){            
                 ?>
-                  <option value="<?php echo $c->code ?>"><?php echo $c->name ?></option>
+                  <option value="<?php echo $c->cid ?>"><?php echo $c->name ?></option>
                   <?php } ?>
                 </select>
               </div>

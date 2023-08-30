@@ -25,9 +25,16 @@ while($rs3 = $result3 -> fetch_object()){
   $addImgs[]=$rs3;
 }
 
-$related_cate = substr($rs -> cate, -5);
+$related_cateArr = explode('/', $rs -> cate);
 
-$rsql = "SELECT * FROM products where cate like '%{$related_cate}%'";
+if(end($related_cateArr) == ''){
+    $related_cate = array_slice($related_cateArr, -2, 1)[0];
+} else {
+    $related_cate = end($related_cateArr);
+}
+
+
+$rsql = "SELECT * FROM products where cate like '%{$related_cate}%' and not(pid={$pid})";
 $related_cate_rt = $mysqli -> query($rsql);
 
 while($rcr = $related_cate_rt -> fetch_object()){
