@@ -16,7 +16,7 @@ function makeOption(evt, step, category, target){
   console.log(cate);
 
   let data = { 
-    cate : cate,  //cate1의 값을 data객체내 변수명(property) 할당
+    cate : cate,  //부모 분류의 cid
     step: step,
     category: category
   }
