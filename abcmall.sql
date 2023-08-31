@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- 생성 시간: 23-08-31 09:06
+-- 생성 시간: 23-08-31 09:55
 -- 서버 버전: 10.4.28-MariaDB
 -- PHP 버전: 8.2.4
 
@@ -70,10 +70,7 @@ CREATE TABLE `cart` (
 INSERT INTO `cart` (`cartid`, `pid`, `userid`, `ssid`, `options`, `cnt`, `regdate`, `total`) VALUES
 (1, 16, '', '5mk3t3d48sqp38em639pb78hmb', '사이즈-대', 1, '2023-08-30 15:31:22', 21000),
 (2, 16, 'alikerock', '', '사이즈-대', 1, '2023-08-30 15:34:14', 21000),
-(3, 16, 'alikerock2', 'kr4i1gopeeh4nni5a7382atq12', '사이즈-대', 1, '2023-08-31 09:44:30', 21000),
-(16, 24, 'alikerock2', '', '', 1, '2023-08-31 14:49:20', 10000),
-(17, 24, 'alikerock2', 'kr4i1gopeeh4nni5a7382atq12', '', 1, '2023-08-31 15:02:02', 10000),
-(18, 23, 'alikerock2', 'kr4i1gopeeh4nni5a7382atq12', '', 1, '2023-08-31 15:02:10', 20000);
+(19, 24, 'alikerock2', '', '', 1, '2023-08-31 16:53:52', 10000);
 
 -- --------------------------------------------------------
 
@@ -345,7 +342,7 @@ INSERT INTO `user_coupons` (`ucid`, `couponid`, `userid`, `status`, `use_max_dat
 (1, 1, 'dodo', 1, '2023-09-23 23:59:59', '2023-08-24 12:35:58', '회원가입'),
 (2, 1, 'monday', 1, '2023-09-27 23:59:59', '2023-08-28 09:57:20', '회원가입'),
 (3, 1, 'monday2', 1, '2023-09-27 23:59:59', '2023-08-28 10:36:32', '회원가입'),
-(4, 1, 'alikerock2', 1, '2023-09-30 23:59:59', '2023-08-31 14:48:35', '회원가입');
+(4, 1, 'alikerock2', -1, '2023-09-30 23:59:59', '2023-08-31 14:48:35', '회원가입');
 
 --
 -- 덤프된 테이블의 인덱스
@@ -422,7 +419,7 @@ ALTER TABLE `admins`
 -- 테이블의 AUTO_INCREMENT `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- 테이블의 AUTO_INCREMENT `category`
