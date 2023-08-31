@@ -89,7 +89,12 @@ while($rs = $result -> fetch_object()){
                             </div>
                             <form action="#">
                                 <input type="search" name="search" placeholder="#569ab15">
-                                <button type="submit">Apply</button>
+                                <select name="coupon" id="coupon">
+                                    <!-- <option value="쿠폰아이디">쿠폰이름</option>
+                                    <option value="쿠폰아이디">쿠폰이름</option>
+                                    <option value="쿠폰아이디">쿠폰이름</option> -->
+                                </select>
+                                <button type="button">Apply</button>
                             </form>
                         </div>
                     </div>
