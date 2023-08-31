@@ -50,7 +50,7 @@ while($rs = $result -> fetch_object()){
                                                         class="fa fa-plus" aria-hidden="true"></i></span>
                                             </div>
                                         </td>
-                                        <td class="total_price"><span><?= $item -> total; ?></span><button class="cart_item_del"> x
+                                        <td class="total_price"><span></span><button class="cart_item_del"> x
                                             </button>
                                         </td>
                                     </tr>
@@ -119,9 +119,9 @@ while($rs = $result -> fetch_object()){
                             </div>
 
                             <ul class="cart-total-chart">
-                                <li><span>Subtotal</span> <span>$59.90</span></li>
+                                <li><span>Subtotal</span> <span class="subtotal"></span></li>
                                 <li><span>Shipping</span> <span>Free</span></li>
-                                <li><span><strong>Total</strong></span> <span><strong>$59.90</strong></span></li>
+                                <li><span><strong>Total</strong></span> <span><strong class="total"></strong></span></li>
                             </ul>
                             <a href="checkout.html" class="btn karl-checkout-btn">Proceed to checkout</a>
                         </div>
@@ -130,6 +130,11 @@ while($rs = $result -> fetch_object()){
             </div>
         </div>
         <!-- ****** Cart Area End ****** -->
+        <script>
+          function cartClac(){
+            
+          }
+        </script>
 
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/footer.php';
