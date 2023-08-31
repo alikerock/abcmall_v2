@@ -220,6 +220,13 @@ while($urs = $ucresult -> fetch_object()){
               alert('삭제를 취소했습니다.');
             }
           });
+
+          $('.coupon-code-area button').click(function(){
+            let discount = Number($('#coupon option:selected').attr('data-price'));
+            let subtotal = Number($('.subtotal').text());
+            $('.discount').text('-'+discount);
+            $('.grandtotal').text(subtotal-discount);
+          });
         </script>
 
 <?php
