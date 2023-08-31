@@ -121,7 +121,7 @@ while($rs = $result -> fetch_object()){
                             <ul class="cart-total-chart">
                                 <li><span>Subtotal</span> <span class="subtotal"></span></li>
                                 <li><span>Shipping</span> <span>Free</span></li>
-                                <li><span><strong>Total</strong></span> <span><strong class="total"></strong></span></li>
+                                <li><span><strong>Total</strong></span> <span><strong class="grandtotal"></strong></span></li>
                             </ul>
                             <a href="checkout.html" class="btn karl-checkout-btn">Proceed to checkout</a>
                         </div>
@@ -131,9 +131,33 @@ while($rs = $result -> fetch_object()){
         </div>
         <!-- ****** Cart Area End ****** -->
         <script>
+          let cartItem = $('.cart_area tbody tr');
+          let subtotal = 0;
+          cartItem.find('.quantity > span').click(function(){
+            console.log('click');
+            let item = $(this).closest('tr');
+            let unitprice = Number(item.find('.price span').text());
+            let count =  Number(item.find('.qty-text').val());
+            let itemtotal = unitprice*count;
+
+            item.find('.total_price span').text(itemtotal);
+            cartClac();
+          })
+  
           function cartClac(){
-            
+            cartItem.each(function(){
+              const unitprice = Number($(this).find('.price span').text());
+              const count =  Number($(this).find('.qty-text').val());
+              let itemtotal = unitprice*count;
+
+              subtotal+=itemtotal;
+              $(this).find('.total_price span').text(itemtotal);
+
+            });
+            $('.subtotal').text(subtotal);
+            $('.grandtotal').text(subtotal);
           }
+          cartClac();
         </script>
 
 <?php
