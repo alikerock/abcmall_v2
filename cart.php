@@ -220,12 +220,50 @@ while($urs = $ucresult -> fetch_object()){
               alert('삭제를 취소했습니다.');
             }
           });
-
+          let ucid;
           $('.coupon-code-area button').click(function(){
             let discount = Number($('#coupon option:selected').attr('data-price'));
             let subtotal = Number($('.subtotal').text());
+            ucid = Number($('#coupon option:selected').val());
+
             $('.discount').text('-'+discount);
             $('.grandtotal').text(subtotal-discount);
+          });
+
+
+          $('.karl-checkout-btn').click(function(e){
+            e.preventDefault();
+            if(confirm('결제진행하시겠습니까?')){                
+                let userid = '<?= $_SESSION['UID']; ?>';
+
+                let data = {
+                    ucid :ucid,
+                    userid:userid
+                }
+                $.ajax({
+                    async:false,
+                    type:'post',
+                    url:'payment.php',
+                    data: data,
+                    dataType:'json',
+                    error:function(error){
+                        console.log(error);
+                    },
+                    success:function(data){
+                        if(data.result == 'ok'){
+                            alert('결제 완료되었습니다.');
+                            location.href = '/abcmall/index.php'
+                        } else{
+                            alert('결제 실패');
+                            location.reload();
+                        }
+                    }
+                });
+
+            } else{
+                alert('결제 취소되었습니다.');
+            }
+
           });
         </script>
 
