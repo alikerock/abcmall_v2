@@ -17,7 +17,7 @@
   $sql = "INSERT INTO cart (
     pid, userid, ssid, options, cnt, regdate, total
   ) VALUES (
-    '{$pid}','{$userid}','{$ssid}','{$opts}','{$cnt}',now(), {$total}
+    '{$pid}','{$userid}','{$ssid}','{$opts}',{$cnt},now(), {$total}
   )";
   $result = $mysqli -> query($sql);
   if($result){
