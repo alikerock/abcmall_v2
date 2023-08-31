@@ -38,6 +38,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/header.php';
                                         </td>
                                         <td class="total_price"><span>$49.88</span><button class="cart_item_del"> x
                                             </button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
