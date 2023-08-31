@@ -1,7 +1,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/header.php';
 
-$sql = "select p.thumbnail,p.name, p.price,c.cnt, c.total 
+$sql = "select p.thumbnail,p.name, p.price, c.cartid, c.cnt, c.total 
         from products p 
         join cart c 
         on p.pid=c.pid
@@ -32,7 +32,7 @@ while($rs = $result -> fetch_object()){
                                   <?php
                                     foreach($rsArr as $item){
                                   ?>
-                                    <tr>
+                                    <tr data-id="<?= $item -> cartid; ?>">
                                         <td class="cart_product_img d-flex align-items-center">
                                             <a href="#"><img src="<?= $item -> thumbnail; ?>" alt="Product"></a>
                                             <h6><?= $item -> name; ?></h6>
@@ -41,12 +41,12 @@ while($rs = $result -> fetch_object()){
                                         <td class="qty">
                                             <div class="quantity">
                                                 <span class="qty-minus"
-                                                    onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
+                                                    onclick="var effect = document.getElementById('qty<?= $item -> cartid; ?>'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
                                                         class="fa fa-minus" aria-hidden="true"></i></span>
-                                                <input type="number" class="qty-text" id="qty" step="1" min="1" max="99"
+                                                <input type="number" class="qty-text" id="qty<?= $item -> cartid; ?>" step="1" min="1" max="99"
                                                     name="quantity" value="<?= $item -> cnt; ?>">
                                                 <span class="qty-plus"
-                                                    onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
+                                                    onclick="var effect = document.getElementById('qty<?= $item -> cartid; ?>'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
                                                         class="fa fa-plus" aria-hidden="true"></i></span>
                                             </div>
                                         </td>
@@ -132,19 +132,21 @@ while($rs = $result -> fetch_object()){
         <!-- ****** Cart Area End ****** -->
         <script>
           let cartItem = $('.cart_area tbody tr');
-          let subtotal = 0;
-          cartItem.find('.quantity > span').click(function(){
+          
+          $('.quantity > span').click(function(){
             console.log('click');
             let item = $(this).closest('tr');
+            console.log(item);
             let unitprice = Number(item.find('.price span').text());
             let count =  Number(item.find('.qty-text').val());
-            let itemtotal = unitprice*count;
+            let itemtotal = unitprice*count;            
 
             item.find('.total_price span').text(itemtotal);
             cartClac();
           })
   
           function cartClac(){
+            let subtotal = 0;
             cartItem.each(function(){
               const unitprice = Number($(this).find('.price span').text());
               const count =  Number($(this).find('.qty-text').val());
