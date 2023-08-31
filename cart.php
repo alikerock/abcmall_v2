@@ -160,6 +160,37 @@ while($rs = $result -> fetch_object()){
             $('.grandtotal').text(subtotal);
           }
           cartClac();
+
+          $('.cart_item_del').click(function(){
+            let cartId = $(this).closest('tr').attr('data-id');
+            
+            if (confirm('정말 삭제하시겠습니까?')) {
+                  // 확인
+                  let data = {
+                    cartid : cartId
+                  }
+                  $.ajax({
+                          async:false,
+                          type:'post',
+                          url:'cart_delete.php',
+                          data: data,
+                          dataType:'json',
+                          error:function(error){
+                              console.log(error);
+                          },
+                          success:function(data){
+                              if(data.result == 'ok'){
+                                  alert('장바구니에 삭제되었습니다.');
+                                  location.reload();
+                              } else{
+                                  alert('장바구니 삭제 실패');
+                              }
+                          }
+                      });
+            } else{
+              alert('삭제를 취소했습니다.');
+            }
+          });
         </script>
 
 <?php
