@@ -385,7 +385,7 @@ if(isset($_COOKIE['recent_view_pd'])){ //recent_view_pd이름의 쿠키 존재�
                 </div>
             </div>
         </section>
-
+        
         <script>
             
             if($('.widget-desc input').length > 0){
@@ -429,9 +429,21 @@ if(isset($_COOKIE['recent_view_pd'])){ //recent_view_pd이름의 쿠키 존재�
             });
             function cart_insert(){
                 let pid = <?= $pid; ?>;
-                let optionname = '<?= $op -> cate; ?>';
-                let optionval = $('.widget-desc input:checked').val();
-                let options = optionname+'-'+optionval;
+                let optionname;            
+                let optionval='';
+                let options='';
+                let cate = `<?php 
+                if(isset($options)){
+                    $cate = $op -> cate;
+                    echo $cate;
+                }
+                ?>`;
+
+                if($('.widget-desc input').length > 0){
+                    optionname = cate;
+                    optionval = $('.widget-desc input:checked').val();
+                    options = optionname+'-'+optionval;
+                }
                 let cnt = $('#qty').val();  
                 let total = Number($('.totalprice').text().replace(',',''));
 
