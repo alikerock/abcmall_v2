@@ -19,6 +19,15 @@ while($rs = $result -> fetch_object()){
   $rsArr[] = $rs;
 }
 // var_dump($rsArr);
+
+//사용가능 쿠폰 출력
+$ucsql = "SELECT uc.ucid, c.coupon_name, c.coupon_price from user_coupons uc JOIN coupons c on c.cid = uc.couponid where c.status = 2 and uc.status = 1 and uc.userid = '{$_SESSION['UID']}' and uc.use_max_date >= now() ";
+
+$ucresult = $mysqli->query($ucsql);
+while($urs = $ucresult -> fetch_object()){
+  $ucArr[] = $urs;
+}
+
 ?>
 
         <!-- ****** Cart Area Start ****** -->
@@ -87,12 +96,19 @@ while($rs = $result -> fetch_object()){
                                 <h5>Cupon code</h5>
                                 <p>Enter your cupone code</p>
                             </div>
-                            <form action="#">
-                                <input type="search" name="search" placeholder="#569ab15">
+                            <form action="#">                                
                                 <select name="coupon" id="coupon">
-                                    <!-- <option value="쿠폰아이디">쿠폰이름</option>
-                                    <option value="쿠폰아이디">쿠폰이름</option>
-                                    <option value="쿠폰아이디">쿠폰이름</option> -->
+                                    <option value="" disabled selected>쿠폰을 선택해주세요.</option>
+                                    <?php
+                                    foreach($ucArr as $uc){
+                                    
+                                    ?>
+
+                                    <option value="<?= $uc -> ucid; ?>" data-price="<?= $uc -> coupon_price; ?>"><?= $uc -> coupon_name; ?></option>
+                                    
+                                    <?php
+                                        }                                    
+                                    ?>
                                 </select>
                                 <button type="button">Apply</button>
                             </form>
