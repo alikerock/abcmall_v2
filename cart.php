@@ -1,11 +1,19 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/header.php';
 
+$where = '';
+if(isset($_SESSION['UID'])){
+    $where = "c.userid = '{$_SESSION['UID']}'"; 
+} else{
+    $where = "c.ssid = '".session_id()."'"; 
+}
 $sql = "select p.thumbnail,p.name, p.price, c.cartid, c.cnt, c.total 
         from products p 
         join cart c 
         on p.pid=c.pid
+        where $where
         ";
+
 $result = $mysqli->query($sql);
 while($rs = $result -> fetch_object()){
   $rsArr[] = $rs;
@@ -120,7 +128,7 @@ while($rs = $result -> fetch_object()){
 
                             <ul class="cart-total-chart">
                                 <li><span>Subtotal</span> <span class="subtotal"></span></li>
-                                <li><span>Shipping</span> <span>Free</span></li>
+                                <li><span>Discount</span> <span class="discount">0</span></li>
                                 <li><span><strong>Total</strong></span> <span><strong class="grandtotal"></strong></span></li>
                             </ul>
                             <a href="checkout.html" class="btn karl-checkout-btn">Proceed to checkout</a>

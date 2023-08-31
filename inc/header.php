@@ -17,17 +17,17 @@
     <title>Karl - Fashion Ecommerce Template | Home</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="/abcmall/img/core-img/favicon.ico">
 
     <!-- Core Style CSS -->
-    <link rel="stylesheet" href="css/core-style.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/abcmall/css/core-style.css">
+    <link rel="stylesheet" href="/abcmall/css/style.css">
 
     <!-- Responsive CSS -->
-    <link href="css/responsive.css" rel="stylesheet">
+    <link href="/abcmall/css/responsive.css" rel="stylesheet">
     <!-- jQuery (Necessary for All JavaScript Plugins) -->   
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
-    <script src="js/jquery.number.min.js"></script>  
+    <script src="/abcmall/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="/abcmall/js/jquery.number.min.js"></script>  
 
 </head>
 
