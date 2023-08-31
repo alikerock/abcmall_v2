@@ -1,5 +1,16 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/inc/header.php';
+
+$sql = "select p.thumbnail,p.name, p.price,c.cnt, c.total 
+        from products p 
+        join cart c 
+        on p.pid=c.pid
+        ";
+$result = $mysqli->query($sql);
+while($rs = $result -> fetch_object()){
+  $rsArr[] = $rs;
+}
+// var_dump($rsArr);
 ?>
 
         <!-- ****** Cart Area Start ****** -->
