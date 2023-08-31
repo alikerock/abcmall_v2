@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- 생성 시간: 23-08-30 08:36
+-- 생성 시간: 23-08-31 09:06
 -- 서버 버전: 10.4.28-MariaDB
 -- PHP 버전: 8.2.4
 
@@ -44,7 +44,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`idx`, `userid`, `email`, `username`, `passwd`, `regdate`, `level`, `last_login`, `end_login`) VALUES
-(1, 'admin', 'admin@shop.com', '관리자', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2023-01-01 17:12:32', 100, '2023-08-30 14:45:27', NULL);
+(1, 'admin', 'admin@shop.com', '관리자', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2023-01-01 17:12:32', 100, '2023-08-31 09:14:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -69,7 +69,11 @@ CREATE TABLE `cart` (
 
 INSERT INTO `cart` (`cartid`, `pid`, `userid`, `ssid`, `options`, `cnt`, `regdate`, `total`) VALUES
 (1, 16, '', '5mk3t3d48sqp38em639pb78hmb', '사이즈-대', 1, '2023-08-30 15:31:22', 21000),
-(2, 16, 'alikerock', '', '사이즈-대', 1, '2023-08-30 15:34:14', 21000);
+(2, 16, 'alikerock', '', '사이즈-대', 1, '2023-08-30 15:34:14', 21000),
+(3, 16, 'alikerock2', 'kr4i1gopeeh4nni5a7382atq12', '사이즈-대', 1, '2023-08-31 09:44:30', 21000),
+(16, 24, 'alikerock2', '', '', 1, '2023-08-31 14:49:20', 10000),
+(17, 24, 'alikerock2', 'kr4i1gopeeh4nni5a7382atq12', '', 1, '2023-08-31 15:02:02', 10000),
+(18, 23, 'alikerock2', 'kr4i1gopeeh4nni5a7382atq12', '', 1, '2023-08-31 15:02:10', 20000);
 
 -- --------------------------------------------------------
 
@@ -79,7 +83,6 @@ INSERT INTO `cart` (`cartid`, `pid`, `userid`, `ssid`, `options`, `cnt`, `regdat
 
 CREATE TABLE `category` (
   `cid` int(11) NOT NULL,
-  `code` varchar(10) DEFAULT NULL,
   `pcode` varchar(10) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   `step` tinyint(4) DEFAULT NULL
@@ -89,25 +92,25 @@ CREATE TABLE `category` (
 -- 테이블의 덤프 데이터 `category`
 --
 
-INSERT INTO `category` (`cid`, `code`, `pcode`, `name`, `step`) VALUES
-(1, 'A0001', NULL, '컴퓨터', 1),
-(2, 'B0001', '1', '노트북', 2),
-(3, 'C0001', '2', '게임용', 3),
-(4, 'A0002', '', '핸드폰', 1),
-(5, 'A0003', '', '태블릿', 1),
-(6, 'A0004', '', '스마트기기', 1),
-(7, 'B0002', '1', '맥북', 2),
-(8, 'C0002', '2', '그램', 3),
-(9, '', '', '서버', 1),
-(10, '', '9', '웹서버', 2),
-(11, '', '10', '호스팅 서버', 3),
-(12, NULL, '', '이도령', 1),
-(13, NULL, '', '성춘향', 1),
-(14, NULL, '4', '노트북', 2),
-(15, NULL, '', '컴퓨터', 1),
-(16, NULL, '', '그린', 1),
-(17, NULL, '', '테스트1', 1),
-(18, NULL, '', '테스트2', 1);
+INSERT INTO `category` (`cid`, `pcode`, `name`, `step`) VALUES
+(1, NULL, '컴퓨터', 1),
+(2, '1', '노트북', 2),
+(3, '2', '게임용', 3),
+(4, '', '핸드폰', 1),
+(5, '', '태블릿', 1),
+(6, '', '스마트기기', 1),
+(7, '1', '맥북', 2),
+(8, '2', '그램', 3),
+(9, '', '서버', 1),
+(10, '9', '웹서버', 2),
+(11, '10', '호스팅 서버', 3),
+(12, '', '이도령', 1),
+(13, '', '성춘향', 1),
+(14, '4', '노트북', 2),
+(15, '', '컴퓨터', 1),
+(16, '', '그린', 1),
+(17, '', '테스트1', 1),
+(18, '', '테스트2', 1);
 
 -- --------------------------------------------------------
 
@@ -133,7 +136,7 @@ CREATE TABLE `coupons` (
 --
 
 INSERT INTO `coupons` (`cid`, `coupon_name`, `coupon_image`, `coupon_type`, `coupon_price`, `coupon_ratio`, `status`, `regdate`, `max_value`, `use_min_price`) VALUES
-(1, '회원가입 축하쿠폰', '/abcmall/pdata/coupon/20230824024400213435.jpg', '0', 10000, 0, 1, '2023-08-24 00:00:00', 100000, 30000),
+(1, '회원가입 축하쿠폰', '/abcmall/pdata/coupon/20230824024400213435.jpg', '0', 10000, 0, 2, '2023-08-24 00:00:00', 100000, 30000),
 (3, '쿠폰테스트', '/abcmall/pdata/coupon/20230824025640848282.jpg', '0', 10000, 10, 1, '2023-08-24 00:00:00', 100000, 10000),
 (4, '쿠폰테스트', '/abcmall/pdata/coupon/20230824030816988546.jpg', '0', 20000, 0, 1, '2023-08-24 00:00:00', 90000, 10000),
 (5, '쿠폰테스트', '/abcmall/pdata/coupon/20230824030921181117.jpg', '0', 10000, 0, 1, '2023-08-24 00:00:00', 10000, 10000),
@@ -165,7 +168,8 @@ INSERT INTO `members` (`mid`, `username`, `userid`, `userpw`, `useremail`, `regd
 (2, '홍길동', 'hong', 'f76d554626e5eb4beae9feb8ec14737644a4c8db915e66381541fe97df82e6cbc37c5e98fa8356bd1fe5be4a2d6650b4728a066999882ce90d723844e91e4242', 'hong@test.com', '2023-08-24 11:54:01'),
 (3, '이도령', 'dodo', 'ac94f165c526746256350c02e01a87e0b46f787494148382383b6b491b9e41587acc83a48aeb4f5e8ff627f14466f90b61acdadc2594c60b447494f306a853b3', 'dodo@test.com', '2023-08-24 12:35:58'),
 (4, '월요일', 'monday', '9994fd49a7a16498f70b66dc3a25e4c6438fbeabe8cdb689c89893d0654555164e47ec561059165c0a2ae6eea54827923f0deff83d84c2b09ca0408d3d021d08', 'mon@mon.kr', '2023-08-28 09:48:50'),
-(13, '아무개', 'monday2', 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', 'asdf@test.com', '2023-08-28 10:36:32');
+(13, '아무개', 'monday2', 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', 'asdf@test.com', '2023-08-28 10:36:32'),
+(14, '아무개2', 'alikerock2', 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', 'test2@test.com', '2023-08-31 14:48:35');
 
 -- --------------------------------------------------------
 
@@ -340,7 +344,8 @@ CREATE TABLE `user_coupons` (
 INSERT INTO `user_coupons` (`ucid`, `couponid`, `userid`, `status`, `use_max_date`, `regdate`, `reason`) VALUES
 (1, 1, 'dodo', 1, '2023-09-23 23:59:59', '2023-08-24 12:35:58', '회원가입'),
 (2, 1, 'monday', 1, '2023-09-27 23:59:59', '2023-08-28 09:57:20', '회원가입'),
-(3, 1, 'monday2', 1, '2023-09-27 23:59:59', '2023-08-28 10:36:32', '회원가입');
+(3, 1, 'monday2', 1, '2023-09-27 23:59:59', '2023-08-28 10:36:32', '회원가입'),
+(4, 1, 'alikerock2', 1, '2023-09-30 23:59:59', '2023-08-31 14:48:35', '회원가입');
 
 --
 -- 덤프된 테이블의 인덱스
@@ -417,7 +422,7 @@ ALTER TABLE `admins`
 -- 테이블의 AUTO_INCREMENT `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- 테이블의 AUTO_INCREMENT `category`
@@ -435,7 +440,7 @@ ALTER TABLE `coupons`
 -- 테이블의 AUTO_INCREMENT `members`
 --
 ALTER TABLE `members`
-  MODIFY `mid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `mid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- 테이블의 AUTO_INCREMENT `products`
@@ -459,7 +464,7 @@ ALTER TABLE `product_options`
 -- 테이블의 AUTO_INCREMENT `user_coupons`
 --
 ALTER TABLE `user_coupons`
-  MODIFY `ucid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ucid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
